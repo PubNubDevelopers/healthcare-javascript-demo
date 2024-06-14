@@ -2,7 +2,7 @@ var pubnub = null
 var user_avatar = ''
 var selectedCustomAvatar = null
 var loginModal = null;
-const num_avatars = 20
+const num_avatars = 16
 const num_avatars_to_display = 5
 const MAX_AVATAR_FILE_SIZE = 1024 * 1024 * 1
 
