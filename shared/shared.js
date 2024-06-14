@@ -1,24 +1,10 @@
-const HOST_URL = "https://showcase.pubnub.com/"
+const HOST_URL = "https://pubnub-healthcare.netlify.app/"
 
 /////////////////////////
 //  Default Channels
 
 var default_channels = {
   public_channels: [
-    {
-      channel: 'Public.global',
-      name: 'Global (All Users)',
-      profileIcon: 'group-global.png',
-      description: 'Group containing all users in the chat system'
-    },
-    {
-      channel: 'Public.location-chat',
-      name: 'Location Updates',
-      profileIcon: 'group-location.png',
-      description:
-        'Used by the Geolocation demo.  Share your location with the world.  Remember, you can log out to stop your data being publicly visible',
-      info: "Populated by the <a href='../geolocation/geolocation.html'>Geo</a> demo"
-    },
     {
       channel: 'Public.healthcare',
       name: 'Healthcare',
@@ -94,6 +80,7 @@ async function testForLoggedInUser () {
 var developerMessages = {}
 
 function developerMessage (message) {
+  return  //  Do not show developer messages in this build
   if (developerMessages[message] == null) {
     developerMessages[message] = true
     const style1 =
