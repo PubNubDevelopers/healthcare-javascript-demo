@@ -1,0 +1,463 @@
+body {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Grid Wrapper Layout */
+
+.iot-container {
+  overflow: scroll;
+  height: 100%;
+}
+
+.quick_activity_wrap{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.top_grid_layout{
+  margin-top: 32px;
+  margin-bottom: 32px;
+  margin-left: 48px;
+  margin-right: 48px;
+}
+
+.quick_activity-wrap-top-border{
+  border-top: 1px solid #E2E8F0;
+  padding-top: 32px;
+  margin-bottom: 32px;
+  margin-left: 48px;
+  margin-right: 48px;
+}
+
+@media screen and (max-width: 800px){
+  .quick_activity_wrap{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .quick_activity_wrap{
+    grid-template-columns: repeat(1, 1fr);
+
+  }
+}
+
+/* Card Layout */
+
+.card-layout{
+  color: #E2E8F0;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.card-layout-large{
+  height: 636px;
+}
+
+.text-heading-layout{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 8px;
+}
+
+.text-heading-wrapper-layout{
+  height: 36px;
+  width: 100%;
+}
+
+/* Status Icons */
+
+.deviceStatusGood {
+  content: url(../img/icons/IoT-Status-Good.png);
+  height: 24px;
+  width: 24px;
+}
+
+.deviceStatusWarning{
+  content: url('../img/icons/IoT-Status-Warning.png');
+  height: 24px;
+  width: 24px;
+}
+
+.deviceStatusError{
+  content: url('../img/icons/IoT-Status-Error.png');
+  height: 24px;
+  width: 24px;
+}
+
+.deviceStatusNone{
+  content: url('../img/icons/IoT-Status-None.png');
+  height: 24px;
+  width: 24px;
+}
+
+/* Typography */
+
+.measurement-heading-layout{
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+/* Device Toggle Button */
+
+.toggle-button-label-layout{
+  margin-top: 7px;
+  margin-left: 12px;
+}
+
+/* Slider */
+
+.temp_layout{
+  margin-top: 40px !important;
+}
+
+.sliders_control {
+  position: relative;
+  min-height: 50px;
+}
+
+.fromSlider {
+  z-index: 1;
+  background-color: var(--color-navy-400);
+  height: 2px;
+}
+
+.toSlider {
+  z-index: 1;
+  background-color: transparent;
+  height: 2px;
+}
+
+.sliderValue{
+  position: absolute;
+  top: 20px;
+}
+
+.range_container {
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 48px;
+  margin-top: 24px;
+  margin-right: 32px;
+  justify-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Rounded sliders */
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Slider Draggable Base State */
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: solid var(--color-navy-400);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: solid var(--color-navy-400);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+/* Slider Draggable Moveable States */
+
+input[type=range]::-webkit-slider-thumb:hover {
+  background: var(--color-text-link);
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  background: var(--color-text-link);
+}
+
+/* Save Button Layout */
+
+.save-settings-layout{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.save-settings-label-layout{
+  margin: 0px;
+}
+
+/* Toggle Button Layout */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.override_margins_range_container{
+  margin-right: 0px !important;
+}
+
+.align_button_toggle_center{
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle button Design */
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-background-dark-text-secondary);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--color-background);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--color-teal-700);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-teal-700);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Status Message */
+
+.status-message-wrapper{
+  position: absolute;
+  right: 0;
+  bottom: 72px;
+}
+
+.status-message{
+  width: 384px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  z-index: 10;
+  position: relative;
+  right: -384px;
+  bottom: 0px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.status-message-error{
+  background-color: var(--color-background-alert-error);
+}
+
+.status-message-warning{
+  background-color: #fcf3de;
+}
+
+.status-message-good{
+  background-color: #e9fcde;
+}
+
+#slide{
+  -webkit-animation: slide 0.5s forwards;
+  animation: slide 5s forwards;
+}
+
+/* Key Frames for slide animation */
+
+@-webkit-keyframes slide {
+  20% { right: 36px; }
+  40% { right: 36px; }
+  60% { right: 36px; }
+  80% {right: 36px; }
+  100% {right: -384px; }
+}
+
+@keyframes slide {
+  20% { right: 36px; }
+  40% { right: 36px; }
+  60% { right: 36px; }
+  80% {right: 36px; }
+  100% {right: -384px; }
+}
+
+@media screen and (max-width: 390px){
+  @-webkit-keyframes slide {
+    20% { right: 3px; }
+    40% { right: 3px; }
+    60% { right: 3px; }
+    80% {right: 3px; }
+    100% {right: -384px; }
+  }
+
+  @keyframes slide {
+    20% { right: 3px; }
+    40% { right: 3px; }
+    60% { right: 3px; }
+    80% {right: 3px; }
+    100% {right: -384px; }
+  }
+}
+
+@media screen and (max-width: 500px){
+  @-webkit-keyframes slide {
+    20% { right: 16px; }
+    40% { right: 16px; }
+    60% { right: 16px; }
+    80% {right: 16px; }
+    100% {right: -384px; }
+  }
+
+  @keyframes slide {
+    20% { right: 16px; }
+    40% { right: 16px; }
+    60% { right: 16px; }
+    80% {right: 16px; }
+    100% {right: -384px; }
+  }
+}
+
+.status-message-warning-message{
+  padding: 0px;
+  margin-top: 2px;
+  margin-left: 14px;
+  margin-bottom: 0px;
+}
+
+.status-message{
+  padding-left: 16px;
+  justify-content: center;
+  display: flex;
+}
+
+.status-message-body-wrapper{
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.icon-layout{
+  margin: 0px;
+  padding-top: 2px;
+}
+
+.status-message-caption-layout{
+  padding: 0px;
+  font-size: 10px;
+  margin-left: 39px;
+  margin-bottom: 6px;
+}
+
+.status-message-caption-layout-divert{
+  padding: 0px;
+  font-size: 10px;
+  margin-left: 37px;
+  margin-bottom: 6px !important;
+}
+
+.status-message-caption-layout-wrapper{
+  margin-bottom: 6px;
+}
+
+.status-message-body-layout{
+  margin-top: 5px;
+}
+
+/* Loading Card */
+
+.card__content{
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 12px;
+  background-size: 200% 100%;
+  animation: 1s shine linear infinite;
+}
+
+.card__content__heading{
+  margin-top: 2px;
+  height: 20px;
+  width: 70%;
+  margin-bottom: 8px;
+}
+
+.card__content__sliding__heading{
+  height: 10px;
+  width: 25%;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.card__heading__height{
+  height: 36px;
+}
+
+.save-button-layout-loading{
+  margin-top: 4px;
+}
+
+/* .card__content__sliding__heading__1{
+  margin-bottom: 10px;
+} */
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

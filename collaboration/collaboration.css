@@ -1,0 +1,171 @@
+:root {
+    --color-canvas-background: #FFFFFF;
+    --color-pen-1: #d6b0cd;
+    --color-pen-2: #92bdc0;
+    --color-pen-3: #065b6a;
+    --color-pen-4: #161c2d;
+}
+
+body {
+    margin: 0em;
+    background-color: var(--color-background-default);
+}
+
+#bottomNav {
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+.app-header {
+    position: relative;
+    z-index: 1;
+}
+
+.pn-btn-white:focus {
+    box-shadow: 0px 0px 0px 0px var(--color-background), 0px 0px 0px 0px var(--color-background);
+}
+
+#nameInput {
+    display: none;
+}
+
+#clearSelfCanvasButton {
+    width: fit-content;
+    margin-top: 16px;
+}
+
+#clearBtnBin {
+    margin-right: 15px;
+}
+
+.clearCanvasButton {
+    position: absolute;
+    left: 16px;
+    z-index: 1;
+}
+
+.backgroundOptions {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1;
+    background-color: #E5E5E5;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    vertical-align: text-top;
+}
+
+.collab-chk {
+    cursor: pointer !important;
+    display: inline-block !important; 
+    width: 20 !important;   
+    margin: auto !important;
+    border-radius: 8px !important;
+    vertical-align: baseline !important;
+}
+
+#clearAllCanvas {
+    display: none;
+    left: 20px;
+    bottom: 150px;
+}
+
+#colorSwatch {
+    height: 100%;
+    left: 36px;
+    position: fixed;
+    top: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+    pointer-events: none;
+    cursor: none;
+}
+
+input[type=radio]:checked+label::after {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: -16px;
+    border-left: 4px solid var(--color-pen-3);
+    height: 80px;
+}
+
+label[for=color01] {
+    background: var(--color-pen-1);
+    margin-top: auto;
+}
+
+label[for=color02] {
+    background: var(--color-pen-2);
+}
+
+label[for=color03] {
+    background: var(--color-pen-3);
+}
+
+label[for=color04] {
+    background: var(--color-pen-4);
+    margin-bottom: auto;
+}
+
+.bubblePresence {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.bubble {
+    display: none;
+}
+
+#sprite-container {
+    left: 20px;
+    right: 20px;
+}
+
+.sprite {
+    min-width: 10px;
+    min-height: 10px;
+    position: absolute;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #065B6A;
+    padding: 8px 14px;
+    background: #D1E4E5;
+    border-radius: 4px;
+}
+
+.remoteSprite {
+    color: #262626;
+    background: #F5F5F5;
+}
+
+@media screen and (max-width: 600px) {
+    .sprite {
+        visibility: hidden;
+    }
+
+    #colorSwatch {
+        bottom: 15px;
+    }
+
+    #clearAllCanvas {
+        bottom: 75px;
+    }
+
+    #name {
+        display: none;
+    }
+    .red-ellipse-bkd {
+        display:none;
+    }
+}

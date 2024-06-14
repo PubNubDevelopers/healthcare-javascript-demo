@@ -1,0 +1,184 @@
+body {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+iframe {
+    /*max-width: 1280px;*/
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+    overflow: scroll;
+}
+
+.rhs {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: scroll;
+    min-width: 250px;
+    background: var(--color-background-section);
+    padding-bottom: 8px;
+}
+
+.live-stream {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 35%;
+    flex-grow: 1;
+}
+
+.message-list {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    overflow: scroll;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.message-list-contents {
+    width: 100%;
+    flex-direction: column;
+    /*overflow:scroll;*/
+    display: flex;
+    padding-left: 16px;
+    padding-right: 8px;
+}
+
+.ve-message-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%
+}
+
+.ve-avatar {
+    display: flex;
+    height: 1.5em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.ve-nickname {
+    display: flex;
+    white-space: nowrap;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.ve-nickname-you {
+    font-weight: 600;
+}
+
+.ve-message {
+    display: flex;
+    font-size: 0.875em;
+    margin-bottom: 5px;
+}
+
+
+.poll-container {
+    background: var(--color-background);
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 8px;
+    padding: 24px;
+    display: block;
+    border: 1px solid var(--color-background-text-secondary);
+    border-radius: 6px;
+}
+
+.poll-option {
+    margin-top: 28px;
+}
+
+.reaction {
+    position: absolute;
+    animation-name: example;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    left: 90%;
+}
+
+@keyframes example {
+    0% {
+        top: 80%;
+        opacity: 1
+    }
+
+    90% {
+        top: 10%;
+        opacity: 0.8
+    }
+
+    100% {
+        display: none;
+        opacity: 0
+    }
+}
+
+@media screen and (max-width: 576px) {
+    body {
+        height: 50vh;
+        min-height: -webkit-fill-available;
+        min-height: -moz-available;
+    }
+
+    #header {
+        display:none;
+    }
+
+    .main-container {
+        flex-flow: column;
+    }
+
+    .live-stream {
+        flex-grow: 0;
+    }
+
+    .poll-container {
+        position: fixed;
+        bottom: 150px;
+    }
+
+    .red-ellipse-bkd {
+        display: none;
+    }
+
+    .message-list-contents {
+        padding-left: 8px;
+    }
+
+    .ve-avatar {
+        display: none;
+    }
+
+    .ve-nickname {
+        display: block !important;
+        white-space: nowrap;
+        font-size: 0.875em;
+        min-width:30px;
+        max-width:70px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+}
+
+.option-label {
+    padding-left: 12px;
+}
+
+.emoji-picker {
+    z-index: 1;
+    bottom: 150px;
+    position: absolute;
+    visibility: hidden
+}
