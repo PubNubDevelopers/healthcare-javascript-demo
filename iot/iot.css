@@ -33,7 +33,7 @@ body {
   margin-right: 48px;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 810px){
   .quick_activity_wrap{
     grid-template-columns: repeat(2, 1fr);
   }

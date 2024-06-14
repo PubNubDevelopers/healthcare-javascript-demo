@@ -324,6 +324,15 @@ body {
     gap: 4px;
 }
 
+.msg-deleted {
+    font-size: 0.8rem;
+}
+
+.msg-edited {
+    font-size: 0.8rem;
+    align-self: flex-end;
+}
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;

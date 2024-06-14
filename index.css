@@ -201,7 +201,7 @@ body {
     max-height: 45px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (width <= 576px) {
     .showcase-grid {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -217,5 +217,11 @@ body {
 
     .developer-message {
         display: none;
+    }
+}
+
+@media screen and (576px < width < 810px) {
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr)
     }
 }

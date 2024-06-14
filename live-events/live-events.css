@@ -125,7 +125,7 @@ iframe {
     }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (width < 810px) {
     body {
         height: 50vh;
         min-height: -webkit-fill-available;
@@ -161,6 +161,9 @@ iframe {
         display: none;
     }
 
+}
+
+@media screen and (width < 576px) {
     .ve-nickname {
         display: block !important;
         white-space: nowrap;
