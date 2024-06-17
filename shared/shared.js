@@ -106,3 +106,15 @@ function toggleShowcase() {
       document.getElementById('nav-discover').classList.remove('bottom-nav-selected')
   }
 }
+
+function appendSearchParams(targetUrl)
+{
+  if (window.location.href.indexOf('?') > -1)
+    {
+      window.location = (targetUrl + window.location.href.slice(window.location.href.indexOf('?')))
+    }
+  else
+  {
+    window.location = targetUrl
+  }
+}

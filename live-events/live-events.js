@@ -26,6 +26,13 @@ const MAX_MESSAGES_SHOWN_PER_CHAT = 100
 
 //  Called when the page is loaded
 async function loadLiveEvents () {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Live Events app",
+    debug: true,
+  });
+  //  END DEMO: Used by the interactive demo
+  
   //  Handle Message input
   document
     .getElementById('input-message')

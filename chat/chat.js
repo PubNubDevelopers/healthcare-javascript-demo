@@ -102,6 +102,12 @@ window.addEventListener('beforeunload', function () {
 
 //  Called on page load
 async function loadChat () {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Chat app",
+    debug: true,
+  });
+  //  END DEMO: Used by the interactive demo
   channelMembers = {}
   userData = {}
   subscribedChannels = []

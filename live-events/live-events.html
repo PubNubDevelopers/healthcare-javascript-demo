@@ -28,6 +28,11 @@
     <!--  Emoji  -->
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
+    <!-- Interactive Demo Framework -->
+    <script type="text/javascript"
+        src="https://darryncampbell-pubnub.github.io/pubnub-demo-utils/js/interactive-demo-interface/v2/demo-interface.js"></script>
+
+
     <script src="https://www.pubnub.com/scripts/amplitude.js" defer></script>
 </HEAD>
 
@@ -103,23 +108,23 @@
 
         <div id="carousel" class="carousel-parent" style="display:none">
             <div class="carousel">
-                <a href="../chat/chat.html" class="carousel-tile">
+                <a href="javascript:appendSearchParams('../chat/chat.html');" class="carousel-tile">
                     <img src="../img/icons/icon-doctorchat.png" class="carousel-image">
                     <div class="emphasised-body carousel-name">HIPAA-compliant Chat</div>
                 </a>
-                <a href="../live-events/live-events.html" class="carousel-tile">
+                <a href="javascript:appendSearchParams('../live-events/live-events.html');" class="carousel-tile">
                     <img src="../img/icons/icon-live-healthevents.png" class="carousel-image">
                     <div class="emphasised-body carousel-name">Live Healthcare Events</div>
                 </a>
-                <a href="../vehicle-dispatch/vehicle-dispatch.html" class="carousel-tile">
+                <a href="javascript:appendSearchParams('../vehicle-dispatch/vehicle-dispatch.html');" class="carousel-tile">
                     <img src="../img/icons/icon-delivery.png" class="carousel-image">
                     <div class="emphasised-body carousel-name">Vehicle Dispatch</div>
                 </a>
-                <a href="../collaboration/collaboration.html" class="carousel-tile">
+                <a href="javascript:appendSearchParams('../collaboration/collaboration.html');" class="carousel-tile">
                     <img src="../img/icons/icon-healthchatplus.png" class="carousel-image">
                     <div class="emphasised-body carousel-name">Multi-User Collaboration</div>
                 </a>
-                <a href="../iot/iot.html" class="carousel-tile">
+                <a href="javascript:appendSearchParams('../iot/iot.html');" class="carousel-tile">
                     <img src="../img/icons/icon-healthwatch.png" class="carousel-image">
                     <div class="emphasised-body carousel-name">Medical Devices</div>
                 </a>
@@ -127,7 +132,7 @@
         </div>
 
         <div class="navbar-container">
-            <a class="nav-link bottom-nav-item" href="../index.html">
+            <a class="nav-link bottom-nav-item" href="javascript:appendSearchParams('../index.html');">
                 <img class="navbar-icon" src="../img/navbar/home.png">
                 <span class="text-caption navbar-text">Home</span></a>
             <a id="nav-discover" class="nav-link bottom-nav-item" style="cursor:pointer"

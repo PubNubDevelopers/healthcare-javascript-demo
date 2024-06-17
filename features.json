@@ -1,0 +1,9 @@
+{
+    "features": [
+      "Launch the Chat app",
+      "Launch the Live Events app",
+      "Launch the Vehicle Dispatch app",
+      "Launch the Multi-User Collaboration app",
+      "Launch the Medical Devices app"
+    ]
+}
