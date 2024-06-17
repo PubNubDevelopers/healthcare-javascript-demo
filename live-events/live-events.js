@@ -148,7 +148,7 @@ function createMessage (messageObj, fromSelf) {
     "'><div class='ve-nickname" +
     youClass +
     "'>" +
-    messageObj.message.sender +
+    /*messageObj.message.sender + */
     youText +
     "</div><div class='ve-message'>" +
     messageObj.message.content.text +
@@ -169,13 +169,13 @@ function imgPollHover(isHover)
   }
 }
 
-function addReaction()
+function addReaction(code)
 {
   pubnub.signal({
     message: { 
       content: {
         type: "liveReaction",
-        emoji: String.fromCodePoint(0x1F60D) 
+        emoji: String.fromCodePoint(code) 
       }
     },
     channel: LIVE_EVENT_CHANNEL
@@ -194,3 +194,4 @@ function receiveReaction(emoji)
   rhs.appendChild(reactionNode);
   setTimeout(() => {rhs.removeChild(reactionNode)}, 3000)
 }
+

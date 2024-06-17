@@ -467,6 +467,12 @@ body {
     visibility: visible !important;
 }
 
+.bordered {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-input-placeholder-text)
+}
+
 @media screen and ( max-width: 576px ) { 
     #chat-lhs { display:none }
 

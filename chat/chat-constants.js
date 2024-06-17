@@ -13,18 +13,18 @@ var predefined_groups = {
     //  'Private.a54as68df1as-iot'.  Since the groups are hardcoded, the channel name will replace any instance of 'uuid' with the user's actual ID
     {
       channel: 'Private.uuid-iot',
-      name: 'My Home (IoT)',
-      profileIcon: 'group-iot.png',
+      name: 'Medical Devices',
+      profileIcon: 'group-medicaldevices.png',
       description:
         'Used by the IoT demo.  Notifications from your smart home, only shared with members of your household',
-      info: "Populated by the <a href='../iot/iot.html'>IoT</a> demo"
+      info: "From the <a href='../iot/iot.html'>Devices</a> demo"
     },
     {
       channel: 'Private.chatgpt.uuid',
-      name: 'Chatbot (ChatGPT)',
-      profileIcon: 'group-chatbot.png',
+      name: 'AI Doctor',
+      profileIcon: 'group-chatbot2.png',
       description:
-        'Interact with a Chatbot powered by OpenAI.  To build your own chatbot based on OpenAI with PubNub see our <a href=\'https://www.pubnub.com/blog/building-a-chatbot-with-openai-gpt3-and-pubnub/\'>blog</a>',
+        'Interact with an AI Doctor (Chatbot) powered by OpenAI.  To build your own chatbot based on OpenAI with PubNub see our <a href=\'https://www.pubnub.com/blog/building-a-chatbot-with-openai-gpt3-and-pubnub/\'>blog</a>',
       info: "Powered by OpenAI"
     }
   ]

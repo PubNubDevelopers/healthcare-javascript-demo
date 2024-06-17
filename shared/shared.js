@@ -7,10 +7,10 @@ var default_channels = {
   public_channels: [
     {
       channel: 'Public.healthcare',
-      name: 'Healthcare',
-      profileIcon: 'group-healthcare.png',
+      name: 'Healthcare Chat',
+      profileIcon: 'doctor-1.png',
       description: 'Build HIPAA-compliant telemedicine apps with PubNub as well as GDPR and SOC2 compliant apps',
-      info: "HIPAA & GDPR compliance"
+      info: "HIPAA & GDPR compliant"
     }
   ]
 }

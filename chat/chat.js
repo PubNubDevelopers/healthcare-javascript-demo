@@ -814,7 +814,7 @@ function generatePrivateGroupHTML (group, actualChannel, isSide) {
   actualChannel +
   "\")'><img src='../img/group/" +
   group.profileIcon +
-  "' class='chat-list-avatar'><div id='unread-" + idDelta +
+  "' class='chat-list-avatar bordered'><div id='unread-" + idDelta +
   actualChannel +
   "' class='text-caption presence-dot-online-num' style='visibility: hidden'>0</div> <div class='group-name group-name-flex'><div id='" + actualChannel + "-channelName'>" +
   group.name +

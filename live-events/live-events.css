@@ -63,6 +63,7 @@ iframe {
 .ve-avatar {
     display: flex;
     height: 1.5em;
+    width: 1.5em;
     margin-right: 5px;
     margin-bottom: 5px;
 }
@@ -157,22 +158,6 @@ iframe {
         padding-left: 8px;
     }
 
-    .ve-avatar {
-        display: none;
-    }
-
-}
-
-@media screen and (width < 576px) {
-    .ve-nickname {
-        display: block !important;
-        white-space: nowrap;
-        font-size: 0.875em;
-        min-width:30px;
-        max-width:70px;
-        overflow:hidden;
-        text-overflow:ellipsis;
-    }
 }
 
 .option-label {
@@ -184,4 +169,8 @@ iframe {
     bottom: 150px;
     position: absolute;
     visibility: hidden
+}
+
+.hidden {
+    display:none !important;
 }

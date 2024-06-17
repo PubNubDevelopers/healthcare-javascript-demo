@@ -32,7 +32,7 @@ async function messageReceived (messageObj, isFromHistory) {
         if (channelMembers["ChatGPT"] == null)
         {
           developerMessage('PubNub can integrate with ChatGPT using Pub/Sub messaging and Serverless Functions')
-          addUserToCurrentChannel("ChatGPT", "OpenAI", "../img/group/group-chatbot.png") 
+          addUserToCurrentChannel("ChatGPT", "AI Powered Doctor", "../img/group/group-chatbot2.png") 
         }
       }
       else
@@ -254,6 +254,8 @@ function messageContents(messageData)
   return messageContents(messageData, false, false)
 }
 //  Wrapper function to cater for whether the message had an associated image
+//  This method also handles edits, deletes, and restores as created by the 'Channel Monitor' (part of BizOps workspace)
+//  Ensure the 'Channel Monitor Configuration' is enabled and configured as defined in this project's ReadMe.
 function messageContents (messageData, unmasked, withoutEditAddendum) {
   if (!unmasked && messageData.data && messageData.data.deleted && messageData.data.deleted.deleted.length > 0)
   {
@@ -286,7 +288,7 @@ function messageContents (messageData, unmasked, withoutEditAddendum) {
         return mostRecentEdit + EDITED_TEXT_ADDENDUM
     }
   }
-  else if (messageData.message.content.attachments && messageData.message.content.attachments[0].image.source != null) {
+  else if (!unmasked && messageData.message.content.attachments && messageData.message.content.attachments[0].image.source != null) {
     //  There was an image attachment with the message
     var imageRender =
       `<img class='temp-message-img temp-message-img-you' src='${messageData.message.content.attachments[0].image.source}'>` +
