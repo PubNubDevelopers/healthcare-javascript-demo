@@ -86,12 +86,12 @@ async function loadCollaboration () {
   developerMessage("You might see some visual quirks if collaborating between a desktop and mobile user but this is NOT a limitation of PubNub, only a limitation of this demo")
 }
 
-//  This function has no purpose within the showcase app, colours are all handled by CSS
+//  This function has no purpose within the showcase app, colours are all handled by CSS. Keep to not break existing functionality.
 function setRandomSpriteColor () {
   return
 }
 
-//  This function has no purpose within the showcase app, this is only used for the standalone demo
+//  This function has no purpose within the showcase app, this is only used for the standalone demo. Keep to not break existing functionality.
 function actionCompleted () {
   return
 }
