@@ -83,7 +83,7 @@ function worker_node(){
         {
           localPubNub.setToken(accessManagerToken)
           //  The server that provides the token for this app is configured to grant a time to live (TTL)
-          //  of 21600 minutes (i.e. 15 days).  IN PRODUCTION, for security reasons, you should set a value 
+          //  of 21600 minutes (i.e. 15 days).  IN PRODUCTION, for security reasons, you should set a value
           //  between 10 and 60 minutes and refresh the token before it expires.
           //  For simplicity, this app does not refresh the token, so will only run continuously for 15 days.
         }
@@ -419,7 +419,7 @@ function worker_node(){
   async function requestAccessManagerToken(userId)
   {
     try{
-      const TOKEN_SERVER = 'https://devrel-demos-access-manager.netlify.app/.netlify/functions/api/showcase'
+      const TOKEN_SERVER = 'https://devrel-demos-access-manager.netlify.app/.netlify/functions/api/healthcare'
       const response = await fetch(`${TOKEN_SERVER}/grant`, {
         method: 'POST',
         headers: {
@@ -427,7 +427,7 @@ function worker_node(){
         },
         body: JSON.stringify({ "UUID": userId })
       });
-  
+
       const token = (await response.json()).body.token;
       return token;
     }
