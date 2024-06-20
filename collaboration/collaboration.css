@@ -1,20 +1,24 @@
 :root {
     --color-canvas-background: #FFFFFF;
     --color-pen-1: #d6b0cd;
-    --color-pen-2: #92bdc0;
-    --color-pen-3: #065b6a;
-    --color-pen-4: #161c2d;
+    --color-pen-2: #a8d5e2;
+    --color-pen-3: #f0a500;
+    --color-pen-4: #ffffff;
 }
 
-body {
-    margin: 0em;
-    background-color: var(--color-background-default);
+html,body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 #bottomNav {
     bottom: 0px;
-    position: absolute;
+    position: fixed;
     width: 100%;
+    left: 0;
 }
 
 .app-header {
@@ -39,33 +43,12 @@ body {
     margin-right: 15px;
 }
 
-.clearCanvasButton {
+#clearCanvas {
     position: absolute;
-    left: 16px;
-    z-index: 1;
-}
-
-.backgroundOptions {
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-    z-index: 1;
-    background-color: #E5E5E5;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px;
-    vertical-align: text-top;
-}
-
-.collab-chk {
-    cursor: pointer !important;
-    display: inline-block !important; 
-    width: 20 !important;   
-    margin: auto !important;
-    border-radius: 8px !important;
-    vertical-align: baseline !important;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 0;
 }
 
 #clearAllCanvas {
@@ -92,7 +75,7 @@ input[type=radio]:checked+label::after {
     position: absolute;
     left: -16px;
     top: -16px;
-    border-left: 4px solid var(--color-pen-3);
+    border-left: 4px solid var(--color-pen-4);
     height: 80px;
 }
 
@@ -124,8 +107,11 @@ label[for=color04] {
 }
 
 #sprite-container {
-    left: 20px;
-    right: 20px;
+    left: 30px;
+    right: 30px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
 }
 
 .sprite {
@@ -147,6 +133,21 @@ label[for=color04] {
 .remoteSprite {
     color: #262626;
     background: #F5F5F5;
+}
+
+#main {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+#drawCanvas {
+    background: url('./bkd/xray.svg') no-repeat center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: block;
 }
 
 @media screen and (max-width: 600px) {

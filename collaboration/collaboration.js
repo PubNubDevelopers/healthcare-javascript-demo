@@ -54,7 +54,7 @@ const IDLE_TIMEOUT = false //  Do not timeout
 const USE_OBJECTS_METADATA = true //  Pull the user's name and avatar from App Context
 const ALWAYS_DRAW_RECEIVED_POINTS = true //  If the user duplicates the tab, still have the drawing show up and don't duplicate anything
 const DRAW_WIDTH = 6 //  Pen width
-const PENCIL_IMAGE = 'images/pencil2.png' //  Pencil icon
+const PENCIL_IMAGE = 'images/pencil_light.png' //  Pencil icon
 const PENCIL_WIDTH = '22px' //  Pencil icon
 const PENCIL_HEIGHT = '22px' //  Pencil icon
 const PENCIL_TRANSFORM = 'rotate(0deg)' //  Pencil icon
@@ -80,55 +80,18 @@ async function loadCollaboration () {
     //  User is not logged in, return them to the index
     window.location.href = '../index.html';
   }
-  if (window.innerWidth > 576)
-  {
-    //  Running on desktop, make the canvas smaller so easier to manage when interacting with mobile
-    var canvas = document.getElementById('drawCanvas')
-    var head = document.getElementById('heading')
-    canvas.style.top = (head.offsetHeight + 10);
-    var canvasWidth = window.innerWidth / 1.5
-    canvas.width = canvasWidth;
-    var canvasHeight = window.innerHeight / 1.5
-    canvas.height = canvasHeight
-    canvas.style.background = "#E5E5E5"
-    var ctx = canvas.getContext('2d')
-    ctx.lineCap = ctx.lineJoin = 'round'
-    document.getElementById('backgroundOpts').style.display = "block"; 
-    document
-      .getElementById('clearSelfCanvasButton')
-      .addEventListener('click', function () {
-        document.getElementById('none').checked = true;
-      })
-  }
+  
   developerMessage("PubNub is designed to exchange messages at large scale in real-time, so you can even implement a collaborative drawing application.")
   developerMessage("This demo uses a combination of Pub/Sub messages as well as the setState Presence API to exchange drawing data and mouse positions respectively")
   developerMessage("You might see some visual quirks if collaborating between a desktop and mobile user but this is NOT a limitation of PubNub, only a limitation of this demo")
 }
 
-function applyBackground(chk, backgroundUrl)
-{
-  var canvas = document.getElementById('drawCanvas')
-  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-  if (chk.checked && chk.id != 'none')
-  {
-    var canvasBkdImage = new Image()
-    canvasBkdImage.addEventListener('load', () => {
-      var desiredImageWidth = canvas.width
-      var desiredImageHeight = canvas.height
-      multiplier = canvasBkdImage.width / canvas.width;
-      desiredImageHeight = canvasBkdImage.height / multiplier;
-      canvas.getContext('2d').drawImage(canvasBkdImage, 0, 0, desiredImageWidth, desiredImageHeight), {once: true}
-    })
-    canvasBkdImage.src = backgroundUrl
-  }
-}
-
-//  This function has no purpose within the showcase app, colours are all handled by CSS
+//  This function has no purpose within the showcase app, colours are all handled by CSS. Keep to not break existing functionality.
 function setRandomSpriteColor () {
   return
 }
 
-//  This function has no purpose within the showcase app, this is only used for the standalone demo
+//  This function has no purpose within the showcase app, this is only used for the standalone demo. Keep to not break existing functionality.
 function actionCompleted () {
   return
 }
