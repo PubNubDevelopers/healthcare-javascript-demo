@@ -63,6 +63,10 @@
                         <div class="row gy-2 flex-grow-1 overflow-auto">
                             <div class="px-0">
                                 <div class="px-0">
+                                    <div id="developer-note" class="text-label developer-message developer-message-info">
+                                        <img id="developer-note-icon" class="login-message-icon login-message-icon-info">
+                                        <span id="login-message-text"><b>Getting Started:</b> Please dispatch a vehicle to start the demo</span>
+                                    </div>
                                     <div class="card text-dark bg-light mb-3 h-100" style="width:100%;">
                                         <div class="card-header text-center emphasised-body">Registered Vehicles</div>
                                         <button type="button" class="btn pn-btn" id="btnDispatchVehicle" onclick="dispatchVehicle_click()">Dispatch Vehicle</button>
@@ -74,10 +78,6 @@
                                         <ul class="list-group list-group-flush scrollable-section flex-grow-1" id="registeredVehiclesList">
                                         </ul>
                                     </div>
-                                    <div id="developer-note" class="text-label developer-message developer-message-info">
-                                        <img id="developer-note-icon" class="login-message-icon login-message-icon-info">
-                                        <span id="login-message-text"><b>Getting Started:</b> Please dispatch a vehicle to start the demo</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +86,6 @@
             </div>
         </div>
         
-        
-
         <!--  Modal: Edit Device -->
         <div class="modal" id="editModal" tabindex="-1">
             <div class="modal-dialog">
@@ -98,25 +96,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="editModalPushMessage" class="form-label" id="editModalPushMessageLabel">Send
-                                Push Message to Driver: </label>
+                            <label for="editModalPushMessage" class="form-label" id="editModalPushMessageLabel">Send Push Message to Driver: </label>
                             <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                You can send Push Messages, FCM on Android &amp; APNS on Apple using PubNub to simplify
-                                your
-                                application logic and avoid platform-specific code. This demo simulates Push, but you
-                                can see a real Push Message being
-                                exchanged over PubNub using our dedicated <a href="https://www.pubnub.com/demos/push/"
-                                    target="_blank">Push demo</a>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                You can send Push Messages, FCM on Android & APNS on Apple using PubNub to simplify your application logic and avoid platform-specific code. This demo simulates Push, but you can see a real Push Message being exchanged over PubNub using our dedicated <a href="https://www.pubnub.com/demos/push/" target="_blank">Push demo</a>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-
+        
                             <div class="buttonRow">
-                                <input type="text" class="form-control" placeholder="Push Message to Send to Driver"
-                                    id="editModalPushMessage">
+                                <input type="text" class="form-control" placeholder="Push Message to Send to Driver" id="editModalPushMessage">
                                 <span class="">
-                                    <button type="button" class="btn pn-btn" style="margin-left:5px"
-                                        id="editModalPushMessageBtn">Send</button>
+                                    <button type="button" class="btn pn-btn" style="margin-left:5px" id="editModalPushMessageBtn">Send</button>
                                 </span>
                             </div> 
                             <HR width="100%">
@@ -137,7 +126,9 @@
                 </div>
             </div>
         </div>
-
+        
+        
+        
     </main>
 
 
@@ -195,7 +186,7 @@
             </div>
         </div>
 
-        <div class="navbar-container">
+        <div class="navbar-container d-flex justify-content-around w-100">
             <a class="nav-link bottom-nav-item" href="javascript:appendSearchParams('../index.html');">
                 <img class="navbar-icon" src="../img/navbar/home.png">
                 <span class="text-caption navbar-text">Home</span></a>
