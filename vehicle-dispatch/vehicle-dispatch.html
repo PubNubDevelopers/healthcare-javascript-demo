@@ -54,33 +54,33 @@
         </div>
 
         <!--  Main app body -->
-        <div class="container-fluid">
-            <div class="row gy-2">
-                <div class="col-lg-8 col-md-7 nopadding">
-                    <div style="height:100%;height: 700px;" id="map-canvas">.</div>
+        <div class="container-fluid h-100">
+            <div class="row h-100 gy-2">
+                <div class="col-lg-8 col-md-7 nopadding h-100">
+                    <div class="content-wrapper h-100">
+                        <div id="map-canvas" class="h-100">.</div>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="row gy-2">
-                        <div style="" id="" class="px-0">
-                            <div style="" id="" class="px-0">
-                                <div class="card text-dark bg-light mb-3" style="width:100%;">
-                                    <div class="card-header text-center emphasised-body">Registered Vehicles</div>
-                                    <button type="button" class="btn pn-btn" id="btnDispatchVehicle"
-                                        onclick="dispatchVehicle_click()">Dispatch Vehicle</button>
-                                    <div class="form-check" style="margin:5px">
-                                        <input type="checkbox" class="form-check-input" id="chkFindMyLocation"
-                                            onchange="handleChkFindMyLocation();">
-                                        <label class="form-check-label text-body-2" for="chkFindMyLocation">Localize:
-                                            Dispatch Vehicles from Near Me</label>
-                                        <span class="location-span text-body-3" id="spanDetectedLocation">[Not
-                                            Requested]</span>
+                <div class="col h-100">
+                    <div class="content-wrapper h-100 d-flex flex-column">
+                        <div class="row gy-2 flex-grow-1 overflow-auto">
+                            <div class="px-0">
+                                <div class="px-0">
+                                    <div class="card text-dark bg-light mb-3 h-100" style="width:100%;">
+                                        <div class="card-header text-center emphasised-body">Registered Vehicles</div>
+                                        <button type="button" class="btn pn-btn" id="btnDispatchVehicle" onclick="dispatchVehicle_click()">Dispatch Vehicle</button>
+                                        <div class="form-check" style="margin:5px">
+                                            <input type="checkbox" class="form-check-input" id="chkFindMyLocation" onchange="handleChkFindMyLocation();">
+                                            <label class="form-check-label text-body-2" for="chkFindMyLocation">Localize: Dispatch Vehicles from Near Me</label>
+                                            <span class="location-span text-body-3" id="spanDetectedLocation">[Not Requested]</span>
+                                        </div>
+                                        <ul class="list-group list-group-flush scrollable-section flex-grow-1" id="registeredVehiclesList">
+                                        </ul>
                                     </div>
-                                    <ul class="list-group list-group-flush" id="registeredVehiclesList">
-                                    </ul>
-                                </div>
-                                <div id="developer-note" class="text-label developer-message developer-message-info">
-                                    <img id="developer-note-icon" class="login-message-icon login-message-icon-info">
-                                    <span id="login-message-text"><b>Getting Started:</b> Please dispatch a vehicle to start the demo</span>
+                                    <div id="developer-note" class="text-label developer-message developer-message-info">
+                                        <img id="developer-note-icon" class="login-message-icon login-message-icon-info">
+                                        <span id="login-message-text"><b>Getting Started:</b> Please dispatch a vehicle to start the demo</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -88,32 +88,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="footer pt-3" style="display:none">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-3 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> PubNub
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                    </div>
-                    <div class="col-lg-3">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.pubnub.com" class="nav-link text-muted"
-                                    target="_blank">PubNub.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
+        
 
         <!--  Modal: Edit Device -->
         <div class="modal" id="editModal" tabindex="-1">
@@ -192,6 +168,47 @@
         document.getElementById('body').append(jsElem);
     </script>
     <script src="./js/map.js"></script>
+
+    <nav id="bottomNav" class="navbar">
+
+        <div id="carousel" class="carousel-parent" style="display:none">
+            <div class="carousel">
+                <a href="javascript:appendSearchParams('../chat/chat.html');" class="carousel-tile">
+                    <img src="../img/icons/icon-doctorchat.png" class="carousel-image">
+                    <div class="emphasised-body carousel-name">HIPAA-compliant Chat</div>
+                </a>
+                <a href="javascript:appendSearchParams('../live-events/live-events.html');" class="carousel-tile">
+                    <img src="../img/icons/icon-live-healthevents.png" class="carousel-image">
+                    <div class="emphasised-body carousel-name">Live Healthcare Events</div>
+                </a>
+                <a href="javascript:appendSearchParams('../vehicle-dispatch/vehicle-dispatch.html');" class="carousel-tile">
+                    <img src="../img/icons/icon-delivery.png" class="carousel-image">
+                    <div class="emphasised-body carousel-name">Vehicle Dispatch</div>
+                </a>
+                <a href="javascript:appendSearchParams('../collaboration/collaboration.html');" class="carousel-tile">
+                    <img src="../img/icons/icon-healthchatplus.png" class="carousel-image">
+                    <div class="emphasised-body carousel-name">Multi-User Collaboration</div>
+                </a>
+                <a href="javascript:appendSearchParams('../iot/iot.html');" class="carousel-tile">
+                    <img src="../img/icons/icon-healthwatch.png" class="carousel-image">
+                    <div class="emphasised-body carousel-name">Medical Devices</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-container">
+            <a class="nav-link bottom-nav-item" href="javascript:appendSearchParams('../index.html');">
+                <img class="navbar-icon" src="../img/navbar/home.png">
+                <span class="text-caption navbar-text">Home</span></a>
+            <a id="nav-discover" class="nav-link bottom-nav-item" style="cursor:pointer"
+                onclick="javascript:toggleShowcase()">
+                <img class="navbar-icon" src="../img/navbar/discover.png">
+                <span class="text-caption navbar-text">Discover</span></a>
+            <a class="nav-link bottom-nav-item" href="../admin/admin.html">
+                <img class="navbar-icon" src="../img/navbar/profile.png">
+                <span class="text-caption navbar-text">Profile</span></a>
+        </div>
+    </nav>
 </body>
 
 </HTML>

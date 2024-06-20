@@ -319,8 +319,49 @@ li.cursor-hand {
     margin: 0 !important;
  }
 
- @media screen and (max-height: 697px) {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-fluid {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.row.h-100 {
+    flex-grow: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#map-canvas {
+    flex-grow: 1;
+}
+
+.scrollable-section {
+    overflow-y: auto;
+}
+
+@media screen and (max-height: 697px) {
     #map-canvas {
-        height: 500px !important;
+        height: auto;
     }
 }
+
+/* Ensure the vehicle section is scrollable when necessary */
+@media (max-width: 768px) {
+    .scrollable-section {
+        max-height: none;
+        overflow-y: visible;
+    }
+}
+
