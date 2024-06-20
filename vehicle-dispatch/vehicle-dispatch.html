@@ -14,6 +14,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <script defer src="./js/fontawesome/all.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
@@ -27,73 +35,163 @@
     <script src="../shared/keys.js"></script>
     <script src="../shared/pubnub_setup.js"></script>
     <script src="./vehicle-dispatch.js"></script>
+    <script src="./js/device_edit.js"></script>
+    <script src="./js/constants.js"></script>
 
     <script src="https://www.pubnub.com/scripts/amplitude.js" defer></script>
 </HEAD>
 
-<BODY onload="">
+<body id="body" onload="onload();">
+    <!--script src="/reload/reload.js"></script-->
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-    <div id="header" class="">
-        <div class="blue-ellipse-bkd"></div>
-        <H2 id='heading' class="demo-header heading-2">Vehicle Dispatch</H2>
-        <div class="red-ellipse-bkd"></div>
-    </div>
+        <!-- Shown if no PubNub keys found in setup.js -->
+        <div class="container alert alert-danger alert-dismissible fade show" style="display:none" id="noKeysAlert"
+            role="alert">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <strong>Cannot find PubNub keys.</strong> Please specify your PubNub keys in keys.js.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
-    <div class="main-container">
-        <div id='messageList' class="message-list">
-
-            <div id='messageListContents' class="message-list-contents text-label">
-                Page goes here
+        <!--  Main app body -->
+        <div class="container-fluid">
+            <div class="row gy-2">
+                <div class="col-lg-8 col-md-7 nopadding">
+                    <div style="height:100%;height: 700px;" id="map-canvas">.</div>
+                </div>
+                <div class="col">
+                    <div class="row gy-2">
+                        <div style="" id="" class="px-0">
+                            <div style="" id="" class="px-0">
+                                <div class="card text-dark bg-light mb-3" style="width:100%;">
+                                    <div class="card-header text-center emphasised-body">Registered Vehicles</div>
+                                    <button type="button" class="btn pn-btn" id="btnDispatchVehicle"
+                                        onclick="dispatchVehicle_click()">Dispatch Vehicle</button>
+                                    <div class="form-check" style="margin:5px">
+                                        <input type="checkbox" class="form-check-input" id="chkFindMyLocation"
+                                            onchange="handleChkFindMyLocation();">
+                                        <label class="form-check-label text-body-2" for="chkFindMyLocation">Localize:
+                                            Dispatch Vehicles from Near Me</label>
+                                        <span class="location-span text-body-3" id="spanDetectedLocation">[Not
+                                            Requested]</span>
+                                    </div>
+                                    <ul class="list-group list-group-flush" id="registeredVehiclesList">
+                                    </ul>
+                                </div>
+                                <div id="developer-note" class="text-label developer-message developer-message-info">
+                                    <img id="developer-note-icon" class="login-message-icon login-message-icon-info">
+                                    <span id="login-message-text"><b>Getting Started:</b> Please dispatch a vehicle to start the demo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
+        <!-- Footer -->
+        <footer class="footer pt-3" style="display:none">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-3 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> PubNub
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-3">
+                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                            <li class="nav-item">
+                                <a href="https://www.pubnub.com" class="nav-link text-muted"
+                                    target="_blank">PubNub.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
+        <!--  Modal: Edit Device -->
+        <div class="modal" id="editModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content p-2">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalTitle">Vehicle: </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="editModalPushMessage" class="form-label" id="editModalPushMessageLabel">Send
+                                Push Message to Driver: </label>
+                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                You can send Push Messages, FCM on Android &amp; APNS on Apple using PubNub to simplify
+                                your
+                                application logic and avoid platform-specific code. This demo simulates Push, but you
+                                can see a real Push Message being
+                                exchanged over PubNub using our dedicated <a href="https://www.pubnub.com/demos/push/"
+                                    target="_blank">Push demo</a>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
 
-
-
-
-    <nav id="bottomNav" class="navbar">
-
-        <div id="carousel" class="carousel-parent" style="display:none">
-            <div class="carousel">
-                <a href="javascript:appendSearchParams('../chat/chat.html');" class="carousel-tile">
-                    <img src="../img/icons/icon-doctorchat.png" class="carousel-image">
-                    <div class="emphasised-body carousel-name">HIPAA-compliant Chat</div>
-                </a>
-                <a href="javascript:appendSearchParams('../live-events/live-events.html');" class="carousel-tile">
-                    <img src="../img/icons/icon-live-healthevents.png" class="carousel-image">
-                    <div class="emphasised-body carousel-name">Live Healthcare Events</div>
-                </a>
-                <a href="javascript:appendSearchParams('../vehicle-dispatch/vehicle-dispatch.html');" class="carousel-tile">
-                    <img src="../img/icons/icon-delivery.png" class="carousel-image">
-                    <div class="emphasised-body carousel-name">Vehicle Dispatch</div>
-                </a>
-                <a href="javascript:appendSearchParams('../collaboration/collaboration.html');" class="carousel-tile">
-                    <img src="../img/icons/icon-healthchatplus.png" class="carousel-image">
-                    <div class="emphasised-body carousel-name">Multi-User Collaboration</div>
-                </a>
-                <a href="javascript:appendSearchParams('../iot/iot.html');" class="carousel-tile">
-                    <img src="../img/icons/icon-healthwatch.png" class="carousel-image">
-                    <div class="emphasised-body carousel-name">Medical Devices</div>
-                </a>
+                            <div class="buttonRow">
+                                <input type="text" class="form-control" placeholder="Push Message to Send to Driver"
+                                    id="editModalPushMessage">
+                                <span class="">
+                                    <button type="button" class="btn pn-btn" style="margin-left:5px"
+                                        id="editModalPushMessageBtn">Send</button>
+                                </span>
+                            </div> 
+                            <HR width="100%">
+                        </div>
+                        <div class="buttonRow">
+                            <label class="form-label" style="margin-bottom:0px">Restart the onboard temperature sensor:</label>
+                            <button type="button" class="btn pn-btn" id="editModalReboot"><nobr>Reboot Sensor</nobr></button>
+                        </div>
+                        <HR width="100%">
+                        <div class="buttonRow">
+                            <label class="form-label" style="margin-bottom:0px">Change the next delivery location:</label>
+                            <button type="button" class="btn pn-btn" style="margin-top: 5px" id="editModalReroute"><nobr>Redirect Vehicle</nobr></button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn pn-btn-white" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="navbar-container">
-            <a class="nav-link bottom-nav-item" href="javascript:appendSearchParams('../index.html');">
-                <img class="navbar-icon" src="../img/navbar/home.png">
-                <span class="text-caption navbar-text">Home</span></a>
-            <a id="nav-discover" class="nav-link bottom-nav-item" style="cursor:pointer"
-                onclick="javascript:toggleShowcase()">
-                <img class="navbar-icon" src="../img/navbar/discover.png">
-                <span class="text-caption navbar-text">Discover</span></a>
-            <a class="nav-link bottom-nav-item" href="../admin/admin.html">
-                <img class="navbar-icon" src="../img/navbar/profile.png">
-                <span class="text-caption navbar-text">Profile</span></a>
-        </div>
-    </nav>
+    </main>
 
-</BODY>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha384-5AkRS45j4ukf+JbWAfHL8P4onPA9p0KwwP7pUdjSQA3ss9edbJUJc/XcYAiheSSz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+    <!-- Application logic -->
+    <script src="./js/dispatch_helper.js"></script>
+    <script src="./js/simulation/mocked_server.js"></script>
+    <script src="./js/pubnub_handler.js"></script>
+    <script src="./js/table_ui.js"></script>
+    <script>
+        //  Map
+        var jsElem = window.document.createElement('script');
+        jsElem.src = "https://maps.googleapis.com/maps/api/js?key=" + geo_key + "&callback=initialize&loading=async";
+        jsElem.type = 'text/javascript';
+        document.getElementById('body').append(jsElem);
+    </script>
+    <script src="./js/map.js"></script>
+</body>
 
 </HTML>
