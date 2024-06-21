@@ -7,7 +7,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Blood Pressure',
-    type: SensorType.FirdgeTemperature,
+    type: SensorType.BloodPressure,
     alarmSettings: {
       minValue: 90,
       maxValue: 120,
@@ -24,7 +24,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Glucose Level',
-    type: SensorType.FreezerTemperature,
+    type: SensorType.GlucoseLevel,
     alarmSettings: {
       minValue: 70,
       maxValue: 100,
@@ -41,7 +41,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Body Temperature',
-    type: SensorType.AirConditioningTemperature,
+    type: SensorType.BodyTemperature,
     alarmSettings: {
       minValue: 96,
       maxValue: 100,
@@ -58,7 +58,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Insulin Level',
-    type: SensorType.TermostatTemperature,
+    type: SensorType.InsulinLevel,
     alarmSettings: {
       minValue: 2,
       maxValue: 15,
@@ -75,7 +75,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Sleep Monitor',
-    type: SensorType.DoorBell,
+    type: SensorType.SleepMonitor,
     setValue: 50
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
@@ -86,7 +86,7 @@ async function initializeSimulators () {
   await createSimulator({
     id: id,
     name: 'Door Alarm',
-    type: SensorType.WindowAlarm,
+    type: SensorType.DoorAlarm,
     setValue: 50
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
@@ -150,25 +150,22 @@ async function createSimulator (args) {
 function getFilePath(type){
   var url;
   switch (type) {
-    case SensorType.FirdgeTemperature:
+    case SensorType.BloodPressure:
       url = '../img/IoT/fridge.png';
       break;
-    case SensorType.FreezerTemperature:
+    case SensorType.GlucoseLevel:
       url = '../img/IoT/freezer_icon.png';
       break;
-    case SensorType.AirConditioningTemperature:
+    case SensorType.BodyTemperature:
       url = '../img/IoT/air_conditioning.png';
       break;
-    case SensorType.TermostatTemperature:
+    case SensorType.InsulinLevel:
       url = '../img/IoT/thermostat.png';
       break;
-    case SensorType.BabySleep:
-      url = '../img/IoT/baby_crib.png';
-      break;
-    case SensorType.DoorBell:
+    case SensorType.SleepMonitor:
       url = '../img/IoT/door_icon.png';
       break;
-    case SensorType.WindowAlarm:
+    case SensorType.DoorAlarm:
       url = '../img/IoT/window.png';
       break;
     default:

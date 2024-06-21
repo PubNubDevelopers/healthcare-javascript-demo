@@ -10,13 +10,12 @@
 
 function worker_node(){
   const SensorType = {
-    TermostatTemperature: 'Thermostat Temperature',
-    AirConditioningTemperature: 'Air Conditioning Temperature',
-    FirdgeTemperature: 'Fridge Temperature',
-    FreezerTemperature: 'Freezer Temperature',
-    WindowAlarm: 'Window Alarm Reading',
-    DoorBell: 'Door Bell Reading',
-    BabySleep: 'Baby Sleep Comfort'
+    InsulinLevel: 'Insulin Level',
+    BodyTemperature: 'Body Temperature',
+    BloodPressure: 'Blood Pressure',
+    GlucoseLevel: 'Glucose Level',
+    DoorAlarm: 'Door Alarm',
+    SleepMonitor: 'Sleep Monitor',
   }
 
   const Status = {
@@ -153,7 +152,7 @@ function worker_node(){
     }
 
     setModel(value){
-      if(this.sensorType !== SensorType.WindowAlarm && this.sensorType !== SensorType.DoorBell){
+      if(this.sensorType !== SensorType.DoorAlarm && this.sensorType !== SensorType.SleepMonitor){
         this.model = function(x, set) {
           const A = (set.maxValue - set.minValue) / 2; // Amplitude based on max and min values
           const B = (set.maxValue + set.minValue) / 2; // Base offset for sine wave
@@ -164,19 +163,19 @@ function worker_node(){
           return Math.min(set.upperBound, Math.max(set.lowerBound, sineValue));
         }
       }
-      if (this.sensorType === SensorType.FirdgeTemperature) {
+      if (this.sensorType === SensorType.BloodPressure) {
         this.units = ' mmHg';
       }
-      else if(this.sensorType === SensorType.FreezerTemperature){
+      else if(this.sensorType === SensorType.GlucoseLevel){
         this.units = ' mg/dl';
       }
-      else if(this.sensorType === SensorType.AirConditioningTemperature){
+      else if(this.sensorType === SensorType.BodyTemperature){
         this.units = ' &degF';
       }
-      else if(this.sensorType === SensorType.TermostatTemperature){
+      else if(this.sensorType === SensorType.InsulinLevel){
         this.units = ' \u00B5IU/mL';
       }
-      else if(this.sensorType == SensorType.WindowAlarm){
+      else if(this.sensorType == SensorType.DoorAlarm){
         this.model = function(x, set){
           var num = Math.floor(Math.random() * 10);
           num += (value - 50)/10;
@@ -188,7 +187,7 @@ function worker_node(){
         }
         this.units = '';
       }
-      else if(this.sensorType === SensorType.DoorBell){
+      else if(this.sensorType === SensorType.SleepMonitor){
         this.model = function(x, set){
           var num = Math.floor(Math.random() * 10);
           num += (value - 50)/10;
@@ -280,10 +279,6 @@ function worker_node(){
     ){
       try{
         var sensorValue = model(tick, this.settings);
-
-        if(this.sensorType === SensorType.FreezerTemperature){
-          console.log(this.settings);
-        }
 
         if(this.settings != null){
           if(this.settings != null && (sensorValue > this.settings.maxValue || sensorValue < this.settings.minValue)){

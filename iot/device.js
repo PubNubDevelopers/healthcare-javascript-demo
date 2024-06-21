@@ -70,10 +70,10 @@ function getContinuousDeviceElement(deviceID){
                 <div class="flex-grow-1" style="font-size: 1rem;" id="deviceInformation">
                   <div class="range_container">
                     <div id="minSliderValue${deviceID}" class="sliderValue">
-                      <span class="text-label" id="fromInput${deviceID}">${iotDevices[deviceID].alarmSettings.minValue}&#176C</span>
+                      <span class="text-label" id="fromInput${deviceID}">${iotDevices[deviceID].alarmSettings.minValue}</span>
                     </div>
                     <div id="maxSliderValue${deviceID}" class="sliderValue">
-                      <span class="text-label" id="toInput${deviceID}">${iotDevices[deviceID].alarmSettings.maxValue}&#176C</span>
+                      <span class="text-label" id="toInput${deviceID}">${iotDevices[deviceID].alarmSettings.maxValue}</span>
                     </div>
                     <div class="sliders_control">
                         <input class="fromSlider" id="fromSlider${deviceID}" type="range" value="${iotDevices[deviceID].alarmSettings.minValue}" min="${iotDevices[deviceID].alarmSettings.lowerBound}" max="${iotDevices[deviceID].alarmSettings.upperBound - 0.01}">
