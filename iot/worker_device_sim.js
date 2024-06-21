@@ -154,13 +154,31 @@ function worker_node(){
     setModel(value){
       if(this.sensorType !== SensorType.DoorAlarm && this.sensorType !== SensorType.SleepMonitor){
         this.model = function(x, set) {
-          const A = (set.maxValue - set.minValue) / 2; // Amplitude based on max and min values
-          const B = (set.maxValue + set.minValue) / 2; // Base offset for sine wave
+          const fluctuation = 0.05; // 5% fluctuation
+          const timeInterval = 60 * 1000; // 1 minute in milliseconds
+          const currentTime = Date.now(); // Current time in milliseconds
+          const max = set.maxValue - 1;
+          const min = set.minValue + 1;
 
-          const sineValue = A * Math.sin(x) + B;
+          // Determine if it's time to fluctuate over the bounds
+          const allowFluctuation = (currentTime % timeInterval) < (timeInterval / 10); // Allow fluctuation for 10% of the interval
 
-          // Ensure values don't exceed bounds
-          return Math.min(set.upperBound, Math.max(set.lowerBound, sineValue));
+          // Calculate the amplitude and offset
+          const A = (max - min) / 2;
+          const B = (max + min) / 2;
+
+          // If allowed to fluctuate, adjust the amplitude to include the 5% fluctuation
+          const adjustedAmplitude = allowFluctuation
+            ? (set.maxValue * (1 + fluctuation) - set.minValue * (1 - fluctuation)) / 2
+            : A;
+
+          // Calculate the sine value
+          const sineValue = adjustedAmplitude * Math.sin(x) + B;
+
+          // Ensure values don't exceed the bounds
+          const clampedValue = Math.min(set.upperBound, Math.max(set.lowerBound, sineValue));
+
+          return clampedValue;
         }
       }
       if (this.sensorType === SensorType.BloodPressure) {
@@ -284,7 +302,7 @@ function worker_node(){
           if(this.settings != null && (sensorValue > this.settings.maxValue || sensorValue < this.settings.minValue)){
             this.sensorStatus = Status.Alert;
           }
-          else if(sensorValue > this.settings.maxValue - 2 || sensorValue < this.settings.minValue + 2){
+          else if(sensorValue > this.settings.maxValue - 1 || sensorValue < this.settings.minValue + 1){
             this.sensorStatus = Status.Warning;
           }
           else{
@@ -321,7 +339,6 @@ function worker_node(){
 
       try{
         if(this.previousSensorStatus != this.sensorStatus){
-          this.previousSensorStatus = this.sensorStatus;
           localPubNub.publish({
             channel: `Private.${UUID}-iot`,
             storeInHistory: true,
@@ -333,6 +350,7 @@ function worker_node(){
               }
             }
           });
+          this.previousSensorStatus = this.sensorStatus;
         }
       }
       catch(e){

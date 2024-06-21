@@ -129,7 +129,13 @@ function handleMessageHandler(payload){
 async function handleStatusMessage(message, status){
   var statusSection = document.getElementById('status-message-section');
   var div = document.createElement('div');
-  if(status == Status.Alert){
+  if(status == Status.Good){
+    div.innerHTML = getStatusMessageGoodHTML(message);
+  }
+  else if(status == Status.Warning){
+    div.innerHTML = getStatusMessageWarningHTML(message);
+  }
+  else if(status == Status.Alert){
     div.innerHTML = getStatusMessageErrorHTML(message);
   }
   statusSection.prepend(div);

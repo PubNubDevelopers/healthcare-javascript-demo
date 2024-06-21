@@ -43,8 +43,8 @@ async function initializeSimulators () {
     name: 'Body Temperature',
     type: SensorType.BodyTemperature,
     alarmSettings: {
-      minValue: 96,
-      maxValue: 100,
+      minValue: 94,
+      maxValue: 102,
       lowerBound: 90,
       upperBound: 110,
     },
@@ -76,7 +76,7 @@ async function initializeSimulators () {
     id: id,
     name: 'Sleep Monitor',
     type: SensorType.SleepMonitor,
-    setValue: 50
+    setValue: 10
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
@@ -87,7 +87,7 @@ async function initializeSimulators () {
     id: id,
     name: 'Ward Door Alarm',
     type: SensorType.DoorAlarm,
-    setValue: 50
+    setValue: 10
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
