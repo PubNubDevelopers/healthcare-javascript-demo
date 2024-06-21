@@ -132,7 +132,7 @@ async function handleStatusMessage(message, status){
   if(status == Status.Good){
     div.innerHTML = getStatusMessageGoodHTML(message);
   }
-  else if (status == Status.Warning){
+  else if(status == Status.Warning){
     div.innerHTML = getStatusMessageWarningHTML(message);
   }
   else if(status == Status.Alert){

@@ -6,15 +6,15 @@ async function initializeSimulators () {
   var id = 'sim_1';
   await createSimulator({
     id: id,
-    name: 'Refrigerator Temperature',
-    type: SensorType.FirdgeTemperature,
+    name: 'Blood Pressure',
+    type: SensorType.BloodPressure,
     alarmSettings: {
-      minValue: -10,
-      maxValue: 0,
-      lowerBound: -20,
-      upperBound: 10
+      minValue: 90,
+      maxValue: 120,
+      lowerBound: 80,
+      upperBound: 130
     },
-    setValue: -9
+    setValue: 50
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
@@ -23,13 +23,13 @@ async function initializeSimulators () {
   var id = 'sim_2';
   await createSimulator({
     id: id,
-    name: 'Freezer Temperature',
-    type: SensorType.FreezerTemperature,
+    name: 'Glucose Level',
+    type: SensorType.GlucoseLevel,
     alarmSettings: {
-      minValue: -23,
-      maxValue: -13,
-      lowerBound: -30,
-      upperBound: 0
+      minValue: 70,
+      maxValue: 100,
+      lowerBound: 60,
+      upperBound: 130
     },
     setValue: -18
   }).then(webWorker => {
@@ -40,13 +40,13 @@ async function initializeSimulators () {
   var id = 'sim_3';
   await createSimulator({
     id: id,
-    name: 'Air Conditioning Temperature',
-    type: SensorType.AirConditioningTemperature,
+    name: 'Body Temperature',
+    type: SensorType.BodyTemperature,
     alarmSettings: {
-      minValue: 17,
-      maxValue: 27,
-      lowerBound: 10,
-      upperBound: 40,
+      minValue: 94,
+      maxValue: 102,
+      lowerBound: 90,
+      upperBound: 110,
     },
     setValue: 22
   }).then(webWorker => {
@@ -57,11 +57,11 @@ async function initializeSimulators () {
   var id = 'sim_4';
   await createSimulator({
     id: id,
-    name: 'Thermostat Temperature',
-    type: SensorType.TermostatTemperature,
+    name: 'Insulin Level',
+    type: SensorType.InsulinLevel,
     alarmSettings: {
-      minValue: 15,
-      maxValue: 25,
+      minValue: 2,
+      maxValue: 15,
       lowerBound: 0,
       upperBound: 35
     },
@@ -71,29 +71,12 @@ async function initializeSimulators () {
   });
   iotDevices[id].worker.postMessage({ action: 'start' });
 
-  var id = 'sim_5';
-  await createSimulator({
-    id: id,
-    name: 'Baby Crib Temperature',
-    type: SensorType.BabySleep,
-    alarmSettings: {
-      minValue: 11,
-      maxValue: 21,
-      lowerBound: 0,
-      upperBound: 30
-    },
-    setValue: 16
-  }).then(webWorker => {
-    iotDevices[id].worker = webWorker
-  });
-  iotDevices[id].worker.postMessage({ action: 'start' });
-
   var id = 'sim_6';
   await createSimulator({
     id: id,
-    name: 'Door Alarm',
-    type: SensorType.DoorBell,
-    setValue: 50
+    name: 'Sleep Monitor',
+    type: SensorType.SleepMonitor,
+    setValue: 10
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
@@ -102,9 +85,9 @@ async function initializeSimulators () {
   var id = 'sim_7';
   await createSimulator({
     id: id,
-    name: 'Window Alarm',
-    type: SensorType.WindowAlarm,
-    setValue: 50
+    name: 'Ward Door Alarm',
+    type: SensorType.DoorAlarm,
+    setValue: 10
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
@@ -165,33 +148,5 @@ async function createSimulator (args) {
 }
 
 function getFilePath(type){
-  var url;
-  switch (type) {
-    case SensorType.FirdgeTemperature:
-      url = '../img/IoT/fridge.png';
-      break;
-    case SensorType.FreezerTemperature:
-      url = '../img/IoT/freezer_icon.png';
-      break;
-    case SensorType.AirConditioningTemperature:
-      url = '../img/IoT/air_conditioning.png';
-      break;
-    case SensorType.TermostatTemperature:
-      url = '../img/IoT/thermostat.png';
-      break;
-    case SensorType.BabySleep:
-      url = '../img/IoT/baby_crib.png';
-      break;
-    case SensorType.DoorBell:
-      url = '../img/IoT/door_icon.png';
-      break;
-    case SensorType.WindowAlarm:
-      url = '../img/IoT/window.png';
-      break;
-    default:
-      url = '../img/IoT/air_conditioning.png';
-      break;
-  }
-
-  return url;
+  return '../img/icons/icon-healthchat.png';
 }

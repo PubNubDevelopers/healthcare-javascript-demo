@@ -51,7 +51,7 @@ function addRegisteredDevice (deviceId, count) {
 function getContinuousDeviceElement(deviceID){
   return `
     <div class='card-wrapper'>
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div style="height: 600px" class="row d-flex justify-content-center align-items-center">
         <div>
           <div class="card card-layout card-layout-large">
             <div class="d-flex text-heading-wrapper-layout">
@@ -70,39 +70,35 @@ function getContinuousDeviceElement(deviceID){
                 <div class="flex-grow-1" style="font-size: 1rem;" id="deviceInformation">
                   <div class="range_container">
                     <div id="minSliderValue${deviceID}" class="sliderValue">
-                      <span class="text-label" id="fromInput${deviceID}">${iotDevices[deviceID].alarmSettings.minValue}&#176C</span>
+                      <span class="text-label" id="fromInput${deviceID}">${iotDevices[deviceID].alarmSettings.minValue}</span>
                     </div>
                     <div id="maxSliderValue${deviceID}" class="sliderValue">
-                      <span class="text-label" id="toInput${deviceID}">${iotDevices[deviceID].alarmSettings.maxValue}&#176C</span>
+                      <span class="text-label" id="toInput${deviceID}">${iotDevices[deviceID].alarmSettings.maxValue}</span>
                     </div>
                     <div class="sliders_control">
                         <input class="fromSlider" id="fromSlider${deviceID}" type="range" value="${iotDevices[deviceID].alarmSettings.minValue}" min="${iotDevices[deviceID].alarmSettings.lowerBound}" max="${iotDevices[deviceID].alarmSettings.upperBound - 0.01}">
                         <input class="toSlider" id="toSlider${deviceID}" type="range" value="${iotDevices[deviceID].alarmSettings.maxValue}" min="${iotDevices[deviceID].alarmSettings.lowerBound}" max="${iotDevices[deviceID].alarmSettings.upperBound}"/>
                     </div>
                 </div>
-                <p class="text-label">Temperature Setting</p>
                 <div class="flex-grow-1" id="deviceInformation">
                   <div class="range_container temp_layout">
                       <div id="sliderValue${deviceID}" class="sliderValue">
-                        <span class="text-label" id="singleSliderValue${deviceID}">${iotDevices[deviceID].setValue}&#176C</span>
                       </div>
                       <div class="sliders_control">
-                          <input class="fromSlider" type="range" id="singleSlider${deviceID}" value="${iotDevices[deviceID].setValue}" min="${iotDevices[deviceID].alarmSettings.lowerBound}" max="${iotDevices[deviceID].alarmSettings.upperBound}"/>
+                        <input class="invisible_container" id="singleSlider${deviceID}" min="${iotDevices[deviceID].alarmSettings.lowerBound}" max="${iotDevices[deviceID].alarmSettings.upperBound}"/>
                       </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row align-bottom">
               <div id="saveButton${deviceID}" class="save-settings-layout pn-btn disabled">
                 <p class="save-settings-label-layout">Save</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   `
 }
@@ -111,7 +107,6 @@ function getContinuousDeviceElement(deviceID){
 function getDiscreteDeviceElement(deviceID){
   return `
     <div class='card-wrapper'>
-
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div>
 

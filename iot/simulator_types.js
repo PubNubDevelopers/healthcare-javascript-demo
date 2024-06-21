@@ -3,13 +3,12 @@
 */
 
 const SensorType = {
-  TermostatTemperature: 'Thermostat Temperature',
-  AirConditioningTemperature: 'Air Conditioning Temperature',
-  FirdgeTemperature: 'Fridge Temperature',
-  FreezerTemperature: 'Freezer Temperature',
-  WindowAlarm: 'Window Alarm Reading',
-  DoorBell: 'Door Bell Reading',
-  BabySleep: 'Baby Sleep Comfort'
+  InsulinLevel: 'Insulin Level',
+  BodyTemperature: 'Body Temperature',
+  BloodPressure: 'Blood Pressure',
+  GlucoseLevel: 'Glucose Level',
+  DoorAlarm: 'Door Alarm',
+  SleepMonitor: 'Sleep Monitor',
 }
 
 const Status = {
