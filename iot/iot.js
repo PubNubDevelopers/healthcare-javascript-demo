@@ -113,7 +113,7 @@ function handleMessageHandler(payload){
     else if (payload.message.content.status == Status.Warning){
       statusBadge?.setAttribute('class', 'deviceStatusWarning');
     }
-    if(payload.message.content.status == Status.Alert){
+    else if(payload.message.content.status == Status.Alert){
       statusBadge?.setAttribute('class', 'deviceStatusError');
     }
     else {
