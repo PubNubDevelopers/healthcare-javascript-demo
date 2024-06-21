@@ -8,18 +8,6 @@ function updateRegisteredDeviceLocation(deviceId) {
   if (lngSpan) lngSpan.innerHTML = iotDevices[deviceId].long;
 }
 
-function updateRegisteredDevicePresence(deviceId) {
-  var presenceSpan = document.getElementById(deviceId + "-presence");
-  if (iotDevices[deviceId].online === "yes") {
-    if (presenceSpan) presenceSpan.classList.remove("presence-dot-gray");
-    if (presenceSpan) presenceSpan.classList.add("presence-dot-online");
-  } else {
-    if (presenceSpan) presenceSpan.classList.add("presence-dot-gray");
-    if (presenceSpan) presenceSpan.classList.remove("presence-dot-online");
-  }
-  updateRegisteredDeviceSensor(deviceId);
-}
-
 function updateRegisteredDeviceSensor(deviceId) {
   var sensorValue = document.getElementById(deviceId + "-sensorValue");
   if (sensorValue) {
