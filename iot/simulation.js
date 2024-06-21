@@ -85,7 +85,7 @@ async function initializeSimulators () {
   var id = 'sim_7';
   await createSimulator({
     id: id,
-    name: 'Door Alarm',
+    name: 'Ward Door Alarm',
     type: SensorType.DoorAlarm,
     setValue: 50
   }).then(webWorker => {
