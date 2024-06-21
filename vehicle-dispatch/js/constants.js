@@ -6,7 +6,7 @@ const TICK_INTERVAL_BASE = 500;
 const MAX_ACTIVE_VEHICLES = 3;
 const routeColor = "#FF0000";
 const driverIconColor = "#000000";
-const icon_svg_url = 'https://github.com/PubNubDevelopers/healthcare-javascript-demo/blob/devx-4428-vehicle-dispatch/vehicle-dispatch/icons/ambulance.svg'; //point to hosted file path to avoid CORS issues.
+const icon_svg_url = 'https://images.ctfassets.net/3prze68gbwl1/5teEXvBHvE9iwUma4l7wD1/829386886c3b3123076c6f96b551eac0/ambulance.svg'; //point to hosted file path to avoid CORS issues.
 const vehicleNames = [
   "Ambulance",
   "Specialty Transport Vehicle",

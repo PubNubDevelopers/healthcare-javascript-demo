@@ -12,19 +12,6 @@ function editDevice(target) {
     );
     document.getElementById("editModalTitle").innerHTML =
       "Vehicle: " + iotDevices[deviceId].name;
-
-    var old_reboot_button = document.getElementById("editModalReboot");
-    var new_reboot_button = old_reboot_button.cloneNode(true);
-    old_reboot_button.parentNode.replaceChild(
-      new_reboot_button,
-      old_reboot_button
-    );
-    document
-      .getElementById("editModalReboot")
-      .addEventListener("click", function () {
-        rebootDevice(deviceId);
-      });
-
     var old_rereoute_button = document.getElementById("editModalReroute");
     var new_reroute_button = old_rereoute_button.cloneNode(true);
     old_rereoute_button.parentNode.replaceChild(
@@ -64,18 +51,6 @@ function UpdateEditModalIntervalRangeLabel() {
     "Sensor Reporting Interval: " +
     document.getElementById("editModalIntervalRange").value / 1000 +
     "s";
-}
-
-//  Handler for the request to reboot a sensor - sends a message to the web worker over PubNub
-async function rebootDevice(deviceId) {
-  await pubnub.publish({
-    channel: iotDevices[deviceId].channelName,
-    message: {
-      action: "reboot",
-    },
-  });
-
-  $("#editModal").modal("hide");
 }
 
 async function pushMessage(deviceId, messageText) {

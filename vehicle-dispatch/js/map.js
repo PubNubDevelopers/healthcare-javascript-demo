@@ -78,13 +78,6 @@ function clearMapRoute(vehicleId) {
   }
 }
 
-// return the data url of an svg file given the URL.
-async function loadSVG(url) {
-  const response = await fetch(url);
-  const text = await response.text();
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(text)}`;
-}
-
 //  Logic called when a route is first created (i.e. when a PN message is received from a vehicle telling us a new route is happening).  Create an item in the global vehicles variable.
 async function initializeDeliveryRoute(
   vehicleId,
@@ -92,15 +85,15 @@ async function initializeDeliveryRoute(
   originalChannel,
   shouldZoom
 ) {
-  //load the icon image given the svg file path in constants.js
-  const svgPath = await loadSVG(icon_svg_url);
+  const iconSize = new google.maps.Size(50, 62);
+  const iconAnchor = new google.maps.Point(iconSize.width / 2, iconSize.height / 2);
   var icon = {
-    path: svgPath,
+    url: icon_svg_url,
     fillColor: driverIconColor,
     fillOpacity: 0.9,
     strokeWeight: 0,
-    scale: 0.05,
-    anchor: new google.maps.Point(250, 200),
+    scaledSize: iconSize,
+    anchor: iconAnchor
   };
   iotDevices[vehicleId].routeInfo = {
     route: route,

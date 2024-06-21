@@ -55,9 +55,7 @@ if ("function" === typeof importScripts) {
           //  display that message on the map, beside the vehicle
           //  This means sending the data back over PubNub
           if (payload.publisher !== id) {
-            if (payload.message.action === "reboot") {
-              vehicleSimulator.reboot();
-            } else if (payload.message.action == "pushMessage") {
+           if (payload.message.action == "pushMessage") {
               //  You can send Push Messages (FCM on Android, APNS on Apple) from PubNub, this can greatly simplify your
               //  application logic, allowing you to seamlessly integrate with mobile push technologies without worrying
               //  about application-specific code by sending a specific payload in your PubNub message.  This demo simulates
@@ -178,22 +176,6 @@ if ("function" === typeof importScripts) {
       this.stop();
       this.interval = newInterval;
       this.start();
-    }
-
-    //  Simulate a device reboot (unsubscribing and resubscribing to the channel will trigger PubNub presence events 
-    //  which are shown on the UI)
-    async reboot() {
-      await localPubNub.unsubscribe({ channels: [sharedChannelName] });
-      setTimeout(this.postReboot, 5000, this);
-    }
-
-    //  Simulate a device reboot (unsubscribing and resubscribing to the channel will trigger PubNub presence events 
-    //  which are shown on the UI)
-    async postReboot(deviceSimulator) {
-      await localPubNub.subscribe({
-        channels: [sharedChannelName],
-        withPresence: false,
-      });
     }
 
     //  Handler for when the user asks to reroute the current vehicle.  Logic is quite simple, rather than generate a 

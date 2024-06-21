@@ -87,14 +87,9 @@ function registeredDeviceRow(deviceId) {
         <div class='vehicleSensor-option' onclick='editDevice(${deviceId})'><H5><i class='fa-regular fa-pen-to-square'></i></H5></div>
       </div>
     </div>\
-      <div class='text-body-3'><span class='heading-6'>Next Delivery:</span> <span id='${deviceId}-nextDelivery'></span></div>\
+      <div class='text-body-3'><span class='heading-6'>Next Stop:</span> <span id='${deviceId}-nextDelivery'></span></div>\
       <div class='text-body-3'><span class='heading-6'>ETA to next Delivery:</span> <span id='${deviceId}-eta'></span></div>\
-      <div class='text-body-3'><span class='heading-6'>Remaining Deliveries:</span> <span id='${deviceId}-remainingDeliveries'></span></div>\
-      <div class='cargoSensor-heading'>\
-        <div class='heading-4'>${iotDevices[deviceId].sensors[0].sensor_name}</div>\
-        <div id='${deviceId}-presence' class='presence-dot-online vehicleSensor-option'></div>\
-      </div>
-      <div class='text-body-3'><span class='heading-6'>Type:</span> ${iotDevices[deviceId].sensors[0].sensor_type}</div>\
+      <div class='text-body-3'><span class='heading-6'>Patient Monitoring Type:</span> ${iotDevices[deviceId].sensors[0].sensor_type}</div>\
       <div class='text-body-3'><span class='heading-6'>Reading:</span> <span id='${deviceId}-sensorValue'>${iotDevices[deviceId].sensors[0].sensor_value}</span> ${iotDevices[deviceId].sensors[0].sensor_units}</div>\
       <div class='heading-4'>Driver's Phone</div>\
       <div class='text-body-3'>Location: [<span id='${deviceId}-lat'></span>, <span id='${deviceId}-lng'></span>]</div>`;
