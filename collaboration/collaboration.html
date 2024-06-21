@@ -31,13 +31,6 @@
 </HEAD>
 
 <BODY onload="loadCollaboration()">
-
-    <div id="header" class="">
-        <div class="blue-ellipse-bkd"></div>
-        <H2 id='heading' class="demo-header heading-2">Collaboration</H2>
-        <div class="red-ellipse-bkd"></div>
-    </div>
-
     <div id="name">
         <input type="text" placeholder="Enter name" id="nameInput" maxlength="20" autocomplete="off" />
     </div>
@@ -56,36 +49,16 @@
             <span id="occupancy">0 active users</span>
         </div>
         <section id="main">
-            <canvas id="drawCanvas" width="300" height="300">Canvas is not supported on this browser!</canvas>
+            <canvas id="drawCanvas">Canvas is not supported on this browser!</canvas>
 
             <section id="colorSwatch" class="colowSwatch">
                 <input type="radio" name="color" id="color01" data-color="#d6b0cd" checked><label for="color01"></label>
-                <input type="radio" name="color" id="color02" data-color="#92bdc0"> <label for="color02"></label>
-                <input type="radio" name="color" id="color03" data-color="#065b6a"> <label for="color03"></label>
-                <input type="radio" name="color" id="color04" data-color="#161c2d"> <label for="color04"></label>
+                <input type="radio" name="color" id="color02" data-color="#a8d5e2"> <label for="color02"></label>
+                <input type="radio" name="color" id="color03" data-color="#f0a500"> <label for="color03"></label>
+                <input type="radio" name="color" id="color04" data-color="#ffffff"> <label for="color04"></label>
             </section>
         </section>
-    </div>
-    <div id='backgroundOpts' class="backgroundOptions text-body-1" style="display:none">
-        <nobr>
-            <span>My Background:&nbsp;&nbsp;&nbsp;</span>
-            <input class="collab-chk pn-radio form-check-input" type="radio" name="bkdChoice" id="none"
-                onchange="applyBackground(this, '')" checked>
-            <span class="" for="none">
-                None&nbsp;&nbsp;&nbsp;
-            </span>
-            <input class="collab-chk pn-radio form-check-input" type="radio" name="bkdChoice" id="code"
-                onchange="applyBackground(this, './bkd/code.png');">
-            <span class="" for="code">
-                Code&nbsp;&nbsp;&nbsp;
-            </span>
-            <input class="collab-chk pn-radio form-check-input" type="radio" name="bkdChoice" id="mac"
-                onchange="applyBackground(this, './bkd/win95.png');">
-            <span class="" for="mac">
-                Desktop&nbsp;&nbsp;&nbsp;
-            </span>
-        </nobr>
-    </div>
+    </div>   
     <div id="clearAllCanvas">
         <button id="clearAllCanvasButton" class="clearAllCanvasButton">&#128465</button>
         <label for="clearAllCanvasButton" class="clearAllLabel">Clear All</label>
