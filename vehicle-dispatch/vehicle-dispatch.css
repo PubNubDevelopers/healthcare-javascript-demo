@@ -228,36 +228,6 @@ li.cursor-hand {
     background-color: var(--color-teal);
 }
 
-.presence-dot-none {
-    position: relative;
-    top: 35px;
-    left: 35px;
-    width: 1em;
-    height: 1em;
-}
-
-.presence-dot-online {
-    width: 1em;
-    height: 1em;
-    background-color: var(--color-icon-alert-success);
-    border: 1px solid var(--color-text-heading);
-    border-radius: 50%;
-    margin: 5px;
-    margin-left: 10px;
-    margin-right: 0px;
-}
-
-.presence-dot-gray {
-    width: 1em;
-    height: 1em;
-    background-color: var(--color-input-border);
-    border: 1px solid var(--color-text-heading);
-    border-radius: 50%;
-    margin: 5px;
-    margin-left: 10px;
-    margin-right: 0px;
-}
-
 .cargoSensor-heading {
     display:flex;
     flex-direction:row;

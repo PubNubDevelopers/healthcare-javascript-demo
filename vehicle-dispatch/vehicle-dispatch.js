@@ -91,15 +91,7 @@ async function onload() {
         }, 4000);
       }
     },
-    presence: (presenceEvent) => {
-      //  Will be invoked regardless of the 'Announce Max' setting on the key
-      if (iotDevices[presenceEvent.uuid]) {
-        if (presenceEvent.action === "join")
-          iotDevices[presenceEvent.uuid].online = "yes";
-        else iotDevices[presenceEvent.uuid].online = "no";
-        updateRegisteredDevicePresence(presenceEvent.uuid);
-      }
-    },
+
     signal: async (payload) => {
       if (payload.message.t === "l") {
         //  Consider whether this signal was related to a delivery which started before the page was loaded
@@ -157,7 +149,6 @@ async function onload() {
   //  Wildcard subscribe, to listen for all devices in a scalable manner
   pubnub.subscribe({
     channels: ["vehicle.*"],
-    withPresence: true,
   });
 }
 
