@@ -118,20 +118,21 @@ if ("function" === typeof importScripts) {
       this.units = "";
       this.firmwareVersion = "1.0.0";
       if (this.sensorType === 0) {
-        //  Average around a temperature of -5.  Vary by 1 (celsius)
-        //  y = 1sin(x) -5
+        //  resting heart rate averages 70 beats per minute (bpm)
         this.model = function (x) {
-          return 1 * Math.sin(x / 10.0) - 5;
+          // average baseline heart rate (70 bpm) + random noise and a periodic sine wave to simulate natural variations * speed of sine wave (angular frequency)
+          // * random noise (normally distributed random variation to make the simulation more realistic)
+          return Math.round(70 + 20 * Math.sin(0.1 * (Date.now() / 1000)) + (Math.random() * 2 - 1));
         };
-        this.units = "°c";
-      } else if (this.sensorType == 1) {
+        this.units = "bpm";
+      } /*else if (this.sensorType == 1) {
         //  Average around a temperature of -18.  Vary by 1 (celsius)
         //  y = 1sin(x) - 18
         this.model = function (x) {
           return 1 * Math.sin(x / 10.0) - 18;
         };
         this.units = "°c";
-      }
+      }*/
     }
 
     start() {
@@ -309,7 +310,7 @@ if ("function" === typeof importScripts) {
           },
         });
 
-        //  Send a signal with the temperature sensor reading
+        //  Send a signal with the sensor reading
         await localPubNub.signal({
           channel: channelName,
           message: {

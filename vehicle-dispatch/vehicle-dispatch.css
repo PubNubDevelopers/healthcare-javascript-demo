@@ -366,16 +366,21 @@ li.cursor-hand {
     min-height: 0;
 }
 
-@media screen and (max-height: 697px) {
-    #map-canvas {
-        height: auto;
-    }
-}
+
 
 @media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
+    #map-canvas {
+        height: 66vh;
+        flex-grow: 0;
+    }
+    .scrollable-section {
+        height: 34vh;
+        overflow-y: auto;
     }
 }
 
-
+@media screen and (max-height: 600px) {
+    #map-canvas {
+        height: 66vh;
+    }
+}  

@@ -78,6 +78,13 @@ function clearMapRoute(vehicleId) {
   }
 }
 
+// return the data url of an svg file given the URL.
+async function loadSVG(url) {
+  const response = await fetch(url);
+  const text = await response.text();
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(text)}`;
+}
+
 //  Logic called when a route is first created (i.e. when a PN message is received from a vehicle telling us a new route is happening).  Create an item in the global vehicles variable.
 async function initializeDeliveryRoute(
   vehicleId,
@@ -85,8 +92,10 @@ async function initializeDeliveryRoute(
   originalChannel,
   shouldZoom
 ) {
+  //load the icon image given the svg file path in constants.js
+  const svgPath = await loadSVG(icon_svg_url);
   var icon = {
-    path: truck_svg,
+    path: svgPath,
     fillColor: driverIconColor,
     fillOpacity: 0.9,
     strokeWeight: 0,
