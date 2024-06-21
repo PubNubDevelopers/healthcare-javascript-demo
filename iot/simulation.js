@@ -148,30 +148,5 @@ async function createSimulator (args) {
 }
 
 function getFilePath(type){
-  var url;
-  switch (type) {
-    case SensorType.BloodPressure:
-      url = '../img/IoT/fridge.png';
-      break;
-    case SensorType.GlucoseLevel:
-      url = '../img/IoT/freezer_icon.png';
-      break;
-    case SensorType.BodyTemperature:
-      url = '../img/IoT/air_conditioning.png';
-      break;
-    case SensorType.InsulinLevel:
-      url = '../img/IoT/thermostat.png';
-      break;
-    case SensorType.SleepMonitor:
-      url = '../img/IoT/door_icon.png';
-      break;
-    case SensorType.DoorAlarm:
-      url = '../img/IoT/window.png';
-      break;
-    default:
-      url = '../img/IoT/air_conditioning.png';
-      break;
-  }
-
-  return url;
+  return '../img/icons/icon-healthchat.png';
 }
