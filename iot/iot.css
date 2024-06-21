@@ -57,7 +57,7 @@ body {
 }
 
 .card-layout-large{
-  height: 636px;
+  height: 600px;
 }
 
 .text-heading-layout{
@@ -69,6 +69,10 @@ body {
 .text-heading-wrapper-layout{
   height: 36px;
   width: 100%;
+}
+
+.align-bottom {
+  margin-top: auto;
 }
 
 /* Status Icons */
@@ -148,6 +152,10 @@ body {
   margin-top: 24px;
   margin-right: 32px;
   justify-items: center;
+}
+
+.invisible_container {
+  visibility: hidden;
 }
 
 input[type="range"] {

@@ -6,15 +6,15 @@ async function initializeSimulators () {
   var id = 'sim_1';
   await createSimulator({
     id: id,
-    name: 'Refrigerator Temperature',
+    name: 'Blood Pressure',
     type: SensorType.FirdgeTemperature,
     alarmSettings: {
-      minValue: -10,
-      maxValue: 0,
-      lowerBound: -20,
-      upperBound: 10
+      minValue: 90,
+      maxValue: 120,
+      lowerBound: 80,
+      upperBound: 130
     },
-    setValue: -9
+    setValue: 50
   }).then(webWorker => {
     iotDevices[id].worker = webWorker
   });
@@ -23,13 +23,13 @@ async function initializeSimulators () {
   var id = 'sim_2';
   await createSimulator({
     id: id,
-    name: 'Freezer Temperature',
+    name: 'Glucose Level',
     type: SensorType.FreezerTemperature,
     alarmSettings: {
-      minValue: -23,
-      maxValue: -13,
-      lowerBound: -30,
-      upperBound: 0
+      minValue: 70,
+      maxValue: 100,
+      lowerBound: 60,
+      upperBound: 130
     },
     setValue: -18
   }).then(webWorker => {
@@ -40,13 +40,13 @@ async function initializeSimulators () {
   var id = 'sim_3';
   await createSimulator({
     id: id,
-    name: 'Air Conditioning Temperature',
+    name: 'Body Temperature',
     type: SensorType.AirConditioningTemperature,
     alarmSettings: {
-      minValue: 17,
-      maxValue: 27,
-      lowerBound: 10,
-      upperBound: 40,
+      minValue: 96,
+      maxValue: 100,
+      lowerBound: 90,
+      upperBound: 110,
     },
     setValue: 22
   }).then(webWorker => {
@@ -57,11 +57,11 @@ async function initializeSimulators () {
   var id = 'sim_4';
   await createSimulator({
     id: id,
-    name: 'Thermostat Temperature',
+    name: 'Insulin Level',
     type: SensorType.TermostatTemperature,
     alarmSettings: {
-      minValue: 15,
-      maxValue: 25,
+      minValue: 2,
+      maxValue: 15,
       lowerBound: 0,
       upperBound: 35
     },
@@ -71,27 +71,10 @@ async function initializeSimulators () {
   });
   iotDevices[id].worker.postMessage({ action: 'start' });
 
-  var id = 'sim_5';
-  await createSimulator({
-    id: id,
-    name: 'Baby Crib Temperature',
-    type: SensorType.BabySleep,
-    alarmSettings: {
-      minValue: 11,
-      maxValue: 21,
-      lowerBound: 0,
-      upperBound: 30
-    },
-    setValue: 16
-  }).then(webWorker => {
-    iotDevices[id].worker = webWorker
-  });
-  iotDevices[id].worker.postMessage({ action: 'start' });
-
   var id = 'sim_6';
   await createSimulator({
     id: id,
-    name: 'Door Alarm',
+    name: 'Sleep Monitor',
     type: SensorType.DoorBell,
     setValue: 50
   }).then(webWorker => {
@@ -102,7 +85,7 @@ async function initializeSimulators () {
   var id = 'sim_7';
   await createSimulator({
     id: id,
-    name: 'Window Alarm',
+    name: 'Door Alarm',
     type: SensorType.WindowAlarm,
     setValue: 50
   }).then(webWorker => {

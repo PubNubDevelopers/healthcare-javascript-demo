@@ -153,66 +153,49 @@ function worker_node(){
     }
 
     setModel(value){
-      if (this.sensorType === SensorType.FirdgeTemperature) {
-        //  Average around a temperature of -5.  Vary by 1 (celsius)
-        //  y = 1sin(x) -5
-        this.model = function (x) {
-          return 2 * Math.sin(x) + value;
+      if(this.sensorType !== SensorType.WindowAlarm && this.sensorType !== SensorType.DoorBell){
+        this.model = function(x, set) {
+          const A = (set.maxValue - set.minValue) / 2; // Amplitude based on max and min values
+          const B = (set.maxValue + set.minValue) / 2; // Base offset for sine wave
+
+          const sineValue = A * Math.sin(x) + B;
+
+          // Ensure values don't exceed bounds
+          return Math.min(set.upperBound, Math.max(set.lowerBound, sineValue));
         }
-        this.units = '&degC';
+      }
+      if (this.sensorType === SensorType.FirdgeTemperature) {
+        this.units = ' mmHg';
       }
       else if(this.sensorType === SensorType.FreezerTemperature){
-        //  Average around a temperature of -18.  Vary by 1 (celsius)
-        //  y = 1sin(x) - 18
-        this.model = function (x) {
-          return 2 * Math.sin(x) + value;
-        }
-        this.units = '&degC';
+        this.units = ' mg/dl';
       }
       else if(this.sensorType === SensorType.AirConditioningTemperature){
-        //  Average around a temperature of -18.  Vary by 1 (celsius)
-        //  y = 1sin(x) - 18
-        this.model = function (x) {
-          return 2 * Math.sin(x) + value;
-        }
-        this.units = '&degC';
+        this.units = ' &degF';
       }
       else if(this.sensorType === SensorType.TermostatTemperature){
-        //  Average around a temperature of 20.  Vary by 1 (celsius)
-        //  y = 1sin(x) + 20
-        this.model = function (x) {
-          return 2 * Math.sin(x) + value;
-        }
-        this.units = '&degC';
-      }
-      else if(this.sensorType === SensorType.BabySleep){
-        //  Average around a temperature of 20.  Vary by 1 (celsius)
-        //  y = 1sin(x) + 20
-        this.model = function (x) {
-          return 2 * Math.sin(x) + value;
-        }
-        this.units = '&degC';
+        this.units = ' \u00B5IU/mL';
       }
       else if(this.sensorType == SensorType.WindowAlarm){
-        this.model = function(x){
-          var num = Math.floor(Math.random() * 10);
-          num += (value - 50)/10;
-          if(num < 5){
-            return "Window Closed";
-          }else{
-            return "Window Open";
-          }
-        }
-        this.units = '';
-      }
-      else if(this.sensorType === SensorType.DoorBell){
-        this.model = function(x){
+        this.model = function(x, set){
           var num = Math.floor(Math.random() * 10);
           num += (value - 50)/10;
           if(num < 5){
             return "Door Closed";
           }else{
             return "Door Open";
+          }
+        }
+        this.units = '';
+      }
+      else if(this.sensorType === SensorType.DoorBell){
+        this.model = function(x, set){
+          var num = Math.floor(Math.random() * 10);
+          num += (value - 50)/10;
+          if(num < 5){
+            return "Sleeping";
+          }else{
+            return "Awake";
           }
         }
         this.units = '';
@@ -248,7 +231,9 @@ function worker_node(){
     updateSettings(alarmSettings){
       this.settings = {
         minValue: alarmSettings.from,
-        maxValue: alarmSettings.to
+        maxValue: alarmSettings.to,
+        lowerBound: this.settings.lowerBound,
+        upperBound: this.settings.upperBound
       };
     }
 
@@ -275,7 +260,7 @@ function worker_node(){
     }
 
     updateValue(value){
-      if(this.model(tick) != "Alarm Off"){
+      if(this.model(tick, this.settings) != "Alarm Off"){
         this.value = value;
         this.setModel(value);
         this.publishSignal(
@@ -294,7 +279,11 @@ function worker_node(){
       sensorUnits,
     ){
       try{
-        var sensorValue = model(tick);
+        var sensorValue = model(tick, this.settings);
+
+        if(this.sensorType === SensorType.FreezerTemperature){
+          console.log(this.settings);
+        }
 
         if(this.settings != null){
           if(this.settings != null && (sensorValue > this.settings.maxValue || sensorValue < this.settings.minValue)){
@@ -308,10 +297,10 @@ function worker_node(){
           }
         }
         else{
-          if(sensorValue == "Window Open" || sensorValue == "Door Open"){
+          if(sensorValue == "Door Open" || sensorValue == "Awake"){
             this.sensorStatus = Status.Alert;
           }
-          else if(sensorValue == "Window Closed" || sensorValue == "Door Closed"){
+          else if(sensorValue == "Door Closed" || sensorValue == "Sleeping"){
             this.sensorStatus = Status.Good;
           }
           else{
@@ -360,10 +349,10 @@ function worker_node(){
     parseMessage(discrete, sensorValue){
       if(!discrete){
         if(this.sensorStatus == Status.Alert && typeof sensorValue !== 'undefined'){
-          return `The ${defaultDeviceName} ${sensorValue > this.settings.maxValue ? 'is to warm' : 'is to cold'}`;
+          return `The ${defaultDeviceName} ${sensorValue > this.settings.maxValue ? 'high' : 'low'} check on the patient ASAP!`;
         }
         else if(this.sensorStatus == Status.Warning){
-          return `The ${defaultDeviceName} is approaching its alert value. Please adjust the temperature!`;
+          return `The ${defaultDeviceName} is approaching its alert value. Please check on the patient.`;
         }
         else{
           return `The ${defaultDeviceName} alert has been resolved!`;
