@@ -32,6 +32,12 @@ window.onbeforeunload = function() {
 
 // Called on page load
 async function initialize () {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Medical Devices app",
+    debug: true,
+  });
+  //  END DEMO: Used by the interactive demo
 
   // Declarations
   iotDevices = {}
@@ -132,7 +138,7 @@ async function handleStatusMessage(message, status){
   if(status == Status.Good){
     div.innerHTML = getStatusMessageGoodHTML(message);
   }
-  else if (status == Status.Warning){
+  else if(status == Status.Warning){
     div.innerHTML = getStatusMessageWarningHTML(message);
   }
   else if(status == Status.Alert){

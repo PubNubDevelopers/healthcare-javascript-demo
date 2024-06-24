@@ -6,7 +6,7 @@
 const largeCardTemplate = document.createElement('template');
 const smallCardTemplate = document.createElement('template');
 largeCardTemplate.innerHTML = `<div class='card-wrapper'>
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div style="height: 600px" class="row d-flex justify-content-center align-items-center h-100">
           <div>
               <div class="card card-layout">
                   <div class="d-flex card__heading__height">
