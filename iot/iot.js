@@ -32,6 +32,12 @@ window.onbeforeunload = function() {
 
 // Called on page load
 async function initialize () {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Medical Devices app",
+    debug: true,
+  });
+  //  END DEMO: Used by the interactive demo
 
   // Declarations
   iotDevices = {}
