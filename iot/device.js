@@ -65,7 +65,7 @@ function getContinuousDeviceElement(deviceID){
               <h6 class="heading-2" id=${deviceID}> Connecting... </h6>
             </div>
             <div class="col">
-              <p class="text-label">Alert Setting</p>
+              <p class="text-label">Acceptable range for patient</p>
               <div class="d-flex align-items-center">
                 <div class="flex-grow-1" style="font-size: 1rem;" id="deviceInformation">
                   <div class="range_container">
