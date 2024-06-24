@@ -67,6 +67,12 @@ const PENCIL_SPRITE_Y_ADJUST = 80 //  Pencil icon
 var pubnub = null;
 
 async function loadCollaboration () {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Multi-User Collaboration app"
+  });
+  //  END DEMO: Used by the interactive demo
+
   pubnub = await createPubNubObject()
   //  This is a workaround because the common collaboration implementation assumes a PubNub object exists on the page but 
   //  we do not want to launch this script until we have successfully created and configured the PubNub object with an

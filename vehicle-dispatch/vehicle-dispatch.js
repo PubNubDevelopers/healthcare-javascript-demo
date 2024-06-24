@@ -14,6 +14,12 @@ var channelName = null;
 var potentialInFlightDeliveries = [];
 
 async function onload() {
+  //  DEMO: Used by the interactive demo
+  actionCompleted({
+    action: "Launch the Vehicle Dispatch app"
+  });
+  //  END DEMO: Used by the interactive demo
+
   iotDevices = {};
   
   pubnub = await createPubNubObject();

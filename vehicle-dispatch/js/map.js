@@ -204,7 +204,7 @@ function zoomOnPosition(position) {
 function showInfoWindow(vehicleId, message) {
   if (iotDevices[vehicleId] == null) return;
   var infoMessage =
-    "<img src='./pn_small.png'> <b>Push Message via PubNub</b> <br/><br/>";
+    "<img src='./icons/pn_small.png'> <b>Push Message via PubNub</b> <br/><br/>";
   infoMessage += message;
   if (iotDevices[vehicleId].infoWindow != null)
     iotDevices[vehicleId].infoWindow.close();
