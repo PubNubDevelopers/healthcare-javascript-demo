@@ -76,7 +76,7 @@ function registeredDeviceRow(deviceId) {
       </div>
     </div>\
       <div class='text-body-3'><span class='heading-6'>Next Stop:</span> <span id='${deviceId}-nextDelivery'></span></div>\
-      <div class='text-body-3'><span class='heading-6'>ETA to next Delivery:</span> <span id='${deviceId}-eta'></span></div>\
+      <div class='text-body-3'><span class='heading-6'>ETA for Patient Dropoff:</span> <span id='${deviceId}-eta'></span></div>\
       <div class='text-body-3'><span class='heading-6'>Patient Monitoring Type:</span> ${iotDevices[deviceId].sensors[0].sensor_type}</div>\
       <div class='text-body-3'><span class='heading-6'>Reading:</span> <span id='${deviceId}-sensorValue'>${iotDevices[deviceId].sensors[0].sensor_value}</span> ${iotDevices[deviceId].sensors[0].sensor_units}</div>\
       <div class='heading-4'>Driver's Phone</div>\
