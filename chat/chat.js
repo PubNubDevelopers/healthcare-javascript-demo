@@ -85,6 +85,8 @@ var subscribedChannels = null
 var fileAttachment = null
 //  Avoid duplicate sends
 var isMessageSendingInProgress = false
+var yourDoctorChatTimer
+var yourDoctorChannel
 const MAX_MESSAGES_SHOWN_PER_CHAT = 50
 const IGNORE_USER_AFTER_THIS_DURATION = 24 //  Hours
 const MAX_ATTACHMENT_FILE_SIZE = 1024 * 1024 * 1 //  bytes
@@ -328,6 +330,7 @@ async function loadChat () {
 //  Very large method to handle all the logic of populating the chat window with the chat
 //  associated with the specified channel
 async function populateChatWindow (channelName) {
+  var previousChannel = sessionStorage.getItem('activeChatChannel')
   sessionStorage.setItem('activeChatChannel', channelName)
   hideEmojiWindow()
   showMessageSendingInProgressSpinner(false)
@@ -349,6 +352,22 @@ async function populateChatWindow (channelName) {
   //  position of the scrollbar (to keep the demo simple)
   setChannelUnreadCounter(channelName, 0)
 
+  if ((previousChannel && previousChannel != channelName) && channelName.indexOf('Private.chatgpt.yourdoctor') > -1)
+  {
+    //  User has launched the channel that corresponds with their private doctor.  This has some special handling
+    loadYourDoctorChat(5)
+  }
+  else if (channelName.indexOf('Private.chatgpt.yourdoctor') > -1)
+  {
+    //  We are launching
+    setYourDoctorPresence(true)
+  }
+  else
+  {
+    clearTimeout(yourDoctorChatTimer)
+    loadYourDoctorChat(0, true)
+  }
+  
   //  Get the meta data for other users in this chat.  This will be stored locally for efficiency.  If we see a new user after the chat
   //  is loaded, that user's data will be loaded dynamically as needed
   try {
@@ -815,12 +834,20 @@ async function getPrivateGroupList () {
 function generatePrivateGroupHTML (group, actualChannel, isSide) {
   var idDelta = ''
   if (isSide) idDelta = 's'
+  var presenceVisibility = 'hidden'
+  if (actualChannel.indexOf('chatgpt.yourdoctor') > -1)
+  {
+    presenceVisibility = 'visible'
+    yourDoctorChannel = actualChannel
+  }
   var privateGroupHtml =
   "<div class='user-with-presence group-row group-row-flex' onclick='launchGroupChat(\"" +
   actualChannel +
   "\")'><img src='../img/group/" +
   group.profileIcon +
-  "' class='chat-list-avatar bordered'><div id='unread-" + idDelta +
+  "' class='chat-list-avatar bordered'><span id='private-pres-" +
+  idDelta + actualChannel +
+  "' style='visibility: " + presenceVisibility + "' class='presence-dot-gray'></span><div id='unread-" + idDelta +
   actualChannel +
   "' class='text-caption presence-dot-online-num' style='visibility: hidden'>0</div> <div class='group-name group-name-flex'><div id='" + actualChannel + "-channelName'>" +
   group.name +
@@ -1229,4 +1256,73 @@ function errorMessage (message) {
   toastBody.innerText = message
   const toast = new bootstrap.Toast(toastLiveExample)
   toast.show()
+}
+
+function loadYourDoctorChat(secsToWait, forceOffline = false)
+{
+  if (secsToWait > 0)
+  {
+    //  User needs to wait for the Doctor
+    //  Set the doctor presence to offline
+    setYourDoctorPresence(false)
+    
+    //  Disable the message input field
+    document.getElementById('messageInputBar').style.pointerEvents = "none"
+
+    //  Show the 'Doctor is busy' overlay
+    document.getElementById('yourDoctorOverlay').style.display = 'flex'
+
+    //  Doctor overlay text
+    var doctorOverlayMsg = document.getElementById('yourDoctorOverlayMsg')
+    doctorOverlayMsg.innerHTML = "The doctor is currently with another patient and will be with you shortly..."
+
+    var doctorOverlayMsgSecs = document.getElementById('yourDoctorOverlaySecs')
+    doctorOverlayMsgSecs.innerHTML = "" + secsToWait + " seconds..."
+    secsToWait--;
+
+    yourDoctorChatTimer = setTimeout(loadYourDoctorChat, 1000, secsToWait);
+  }
+  else
+  {
+    //  User has waited long enough
+    //  Set the doctor presence to online
+    if (forceOffline)
+    {
+      setYourDoctorPresence(false)
+    }
+    else
+    {
+      setYourDoctorPresence(true)
+    }
+    
+    //  Enable the message input field
+    document.getElementById('messageInputBar').style.pointerEvents = "auto"
+
+    //  Hide the 'Doctor is busy' overlay
+    document.getElementById('yourDoctorOverlay').style.display = 'none'
+  }
+
+}
+
+function setYourDoctorPresence(isPresent)
+{
+
+  presenceIconId = 'private-pres-' + yourDoctorChannel
+  presenceIconIdSide = 'private-pres-s' + yourDoctorChannel
+  var doctorPresence = document.getElementById(presenceIconId)
+  var doctorPresenceSide = document.getElementById(presenceIconIdSide)
+  if (doctorPresence && isPresent)
+  {
+      doctorPresence.classList.add('presence-dot-online')
+      doctorPresenceSide.classList.add('presence-dot-online')
+      doctorPresence.classList.remove('presence-dot-gray')
+      doctorPresenceSide.classList.remove('presence-dot-gray')
+  }
+  else if (doctorPresence && !isPresent)
+  {
+    doctorPresence.classList.remove('presence-dot-online')
+    doctorPresenceSide.classList.remove('presence-dot-online')
+    doctorPresence.classList.add('presence-dot-gray')
+    doctorPresenceSide.classList.add('presence-dot-gray')
+  }
 }

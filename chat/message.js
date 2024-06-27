@@ -21,7 +21,26 @@ async function messageReceived (messageObj, isFromHistory) {
     }
 
     var chatGptConversation = false
-    if (messageObj.channel.startsWith("Private.chatgpt"))
+    //  Handle messages to our own doctor similarly
+    if (messageObj.channel.startsWith("Private.chatgpt.yourdoctor"))
+      {
+        //  Handle messages from ChatGPT as a special case
+        chatGptConversation = true
+        if (messageObj.message.sender == "ChatGPT")
+        {
+          showMessageSendingInProgressSpinner(false)
+          messageObj.publisher = "YourDoctor";
+          if (channelMembers["YourDoctor"] == null)
+          {
+            addUserToCurrentChannel("YourDoctor", "Your Doctor", "../img/group/doctor-3.png") 
+          }
+        }
+        else
+        {
+          showMessageSendingInProgressSpinner(true)
+        }
+      }
+    else if (messageObj.channel.startsWith("Private.chatgpt"))
     {
       //  Handle messages from ChatGPT as a special case
       chatGptConversation = true

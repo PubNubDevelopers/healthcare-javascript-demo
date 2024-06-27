@@ -20,6 +20,14 @@ var predefined_groups = {
       info: "From the <a href='../iot/iot.html'>Devices</a> demo"
     },
     {
+      channel: 'Private.chatgpt.yourdoctoruuid',
+      name: 'Your Doctor',
+      profileIcon: 'doctor-3.png',
+      description:
+        'A virtual consultation with your doctor.  Please wait until your doctor becomes available',
+      info: "Virtual consultation"
+    },
+    {
       channel: 'Private.chatgpt.uuid',
       name: 'AI Doctor',
       profileIcon: 'group-chatbot2.png',
