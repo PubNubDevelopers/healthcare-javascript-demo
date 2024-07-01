@@ -113,17 +113,23 @@ function SignalReceivedHandler(payload){
 function handleMessageHandler(payload){
   try{
     var statusBadge = document.getElementById(`deviceStatus${payload.publisher}`);
+    var statusColor = document.getElementById(`deviceColor${payload.publisher}`);
+    console.log(statusColor);
     if(payload.message.content.status == Status.Good){
       statusBadge?.setAttribute('class', 'deviceStatusGood');
+      statusColor.style.backgroundColor = "#D3EED1";
     }
     else if (payload.message.content.status == Status.Warning){
       statusBadge?.setAttribute('class', 'deviceStatusWarning');
+      statusColor.style.backgroundColor = "#FFD580";
     }
     else if(payload.message.content.status == Status.Alert){
       statusBadge?.setAttribute('class', 'deviceStatusError');
+      statusColor.style.backgroundColor = "#FF9999";
     }
     else {
       statusBadge?.setAttribute('class', 'deviceStatusNone');
+      statusColor.style.backgroundColor = "#E2E8F0";
     }
     handleStatusMessage(payload.message.content.text, payload.message.content.status);
   }

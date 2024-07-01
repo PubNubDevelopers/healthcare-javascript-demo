@@ -25,10 +25,10 @@ function controlToSlider(fromSlider, toSlider, toInput, deviceId) {
   var val = 0;
   if (from <= to) {
     toSlider.value = to;
-    toInput.innerHTML = to + '&#176C';
+    toInput.innerHTML = to + '';
     val = to;
   } else {
-    toInput.innerHTML = from + '&#176C';
+    toInput.innerHTML = from + '';
     toSlider.value = from;
     val = from;
   }
@@ -39,7 +39,7 @@ function controlToSlider(fromSlider, toSlider, toInput, deviceId) {
 function controlSlider(slider, deviceId, isPercent){
   const value = getParsedValue(slider);
   slider.value = value;
-  document.getElementById(`singleSliderValue${deviceId}`).innerHTML = value + (isPercent ? '%' : '&#176C');
+  document.getElementById(`singleSliderValue${deviceId}`).innerHTML = value + (isPercent ? '%' : '');
   setValue(value, deviceId);
   fillSingleSlider(slider, iotDevices[deviceId].setValue, '#C6C6C6', '#25daa5', value);
   if(isPercent){

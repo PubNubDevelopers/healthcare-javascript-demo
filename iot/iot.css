@@ -49,7 +49,6 @@ body {
 /* Card Layout */
 
 .card-layout{
-  color: #E2E8F0;
   padding-top: 32px;
   padding-bottom: 32px;
   padding-right: 24px;
@@ -76,6 +75,22 @@ body {
 }
 
 /* Status Icons */
+
+.deviceColorGood {
+  background-color: #D3EED1;
+}
+
+.deviceColorWarning {
+  background-color: #FFD580;
+}
+
+.deviceColorError {
+  background-color: #FF9999;
+}
+
+.deviceColorNone {
+  background-color: #E2E8F0;
+}
 
 .deviceStatusGood {
   content: url(../img/icons/IoT-Status-Good.png);

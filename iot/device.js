@@ -53,7 +53,7 @@ function getContinuousDeviceElement(deviceID){
     <div class='card-wrapper'>
       <div style="height: 600px" class="row d-flex justify-content-center align-items-center">
         <div>
-          <div class="card card-layout card-layout-large">
+          <div class="card card-layout card-layout-large deviceColorGood" id="deviceColor${deviceID}">
             <div class="d-flex text-heading-wrapper-layout">
               <h6 class="flex-grow-1 heading-5 text-heading-layout">${iotDevices[deviceID].name}</h6>
               <div class="deviceStatusGood" id="deviceStatus${deviceID}">
@@ -109,8 +109,7 @@ function getDiscreteDeviceElement(deviceID){
     <div class='card-wrapper'>
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div>
-
-          <div class="card card-layout card-layout-small">
+          <div class="card card-layout card-layout-small deviceColorGood" id="deviceColor${deviceID}">
             <div class="d-flex text-heading-wrapper-layout">
               <h6 class="flex-grow-1 heading-5 text-heading-layout">${iotDevices[deviceID].name}</h6>
               <div class="deviceStatusGood" id="deviceStatus${deviceID}">
