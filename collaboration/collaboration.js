@@ -69,7 +69,7 @@ var pubnub = null;
 async function loadCollaboration () {
   //  DEMO: Used by the interactive demo
   actionCompleted({
-    action: "Launch the Multi-User Collaboration app"
+    action: "Launch the Doctor-Patient Collaboration app"
   });
   //  END DEMO: Used by the interactive demo
 
